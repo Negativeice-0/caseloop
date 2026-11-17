@@ -30,7 +30,7 @@ bash:
 	powershell -ExecutionPolicy Bypass
 
 db-up:
-	docker compose up -d
+	docker compose up -d db
 
 db-down:
 	docker compose down

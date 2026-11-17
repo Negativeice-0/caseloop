@@ -1,7 +1,12 @@
 import { ResponseItem, ResponseCreatePayload, SystemStatus } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api";
+// If VITE_API_BASE_URL is not defined (local dev), default to "/api" 
+// so it hits the Vite proxy and shares the same origin (localhost:5173).
+// In production, you can set VITE_API_BASE_URL in your build environment.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 const API_ROOT_URL = API_BASE_URL.replace(/\/api\/?$/, "");
+// 👉 ADD THIS LINE TO DEBUG:
+console.log("🔍 Resolved API_BASE_URL:", API_BASE_URL);
 let csrfToken = '';
 
 async function apiFetch(input: RequestInfo | URL, init: RequestInit = {}): Promise<Response> {
@@ -14,7 +19,10 @@ async function apiFetch(input: RequestInfo | URL, init: RequestInit = {}): Promi
 }
 
 export async function checkBackendHealth() {
-  const res = await apiFetch(`${API_ROOT_URL}/`);
+  // Instead of hitting the unproxied root '/', hit a valid API endpoint 
+  // that goes through the Vite proxy, such as system status or intakes
+  const res = await apiFetch(`${API_BASE_URL}/admin/system-status`);
+  if (!res.ok) throw new Error('Backend health check failed');
   return res.json();
 }
 

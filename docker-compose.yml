@@ -27,8 +27,6 @@ services:
       SESSION_TTL_SECONDS: ${SESSION_TTL_SECONDS:-43200}
       WHATSAPP_VERIFY_TOKEN: ${WHATSAPP_VERIFY_TOKEN:-}
       WHATSAPP_APP_SECRET: ${WHATSAPP_APP_SECRET:-}
-    ports:
-      - "${API_BIND_HOST:-127.0.0.1}:8000:8000"
     depends_on:
       db:
         condition: service_healthy
