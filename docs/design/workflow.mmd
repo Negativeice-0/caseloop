@@ -1,0 +1,23 @@
+flowchart LR
+  M[Incoming report<br/>manual or approved channel]
+  D[Pending intake draft<br/>preserve source, ID, sender and time]
+  H{Coordinator review}
+  X[Correct / reject / request clarification]
+  P[Publish approved response]
+  B[Apply explicit branch tag<br/>for example KLB]
+  T{Create linked assignment?}
+  A[Assign team and due/status]
+  L[Append actor-attributed timeline event]
+  R[Read-only response register]
+  Q[Filter and summarize<br/>branch, team, date]
+  W[Preview and export Word report]
+
+  M --> D --> H
+  H -->|needs correction| X --> H
+  H -->|approve| P --> B --> T
+  T -->|yes| A --> L
+  T -->|no| L
+  P --> R
+  A --> R
+  L --> Q
+  R --> Q --> W

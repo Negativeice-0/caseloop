@@ -1,0 +1,32 @@
+flowchart LR
+  subgraph Users
+    R[Responder / read-only register]
+    C[Coordinator / intake review and reports]
+    A[Administrator / users, teams, records]
+  end
+
+  subgraph Current_Local["Current local development"]
+    UI[React 18 + TypeScript<br/>Vite development server]
+    API[FastAPI<br/>Python 3.11]
+    DB[(PostgreSQL 16<br/>Docker Compose volume)]
+  end
+
+  META[Meta WhatsApp Cloud API<br/>direct test-number webhook today]
+  OCI[Proposed OCI Always Free VM<br/>Docker Engine / Compose]
+  TLS[Proposed HTTPS reverse proxy]
+  WEB[Proposed React production static service]
+
+  R --> UI
+  C --> UI
+  A --> UI
+  UI --> API
+  API --> DB
+  META -. signed webhook .-> API
+  OCI -. proposed host for .-> API
+  OCI -. proposed host for .-> DB
+  OCI -. proposed host for .-> WEB
+  R -. HTTPS .-> TLS
+  C -. HTTPS .-> TLS
+  A -. HTTPS .-> TLS
+  TLS --> WEB
+  WEB --> API

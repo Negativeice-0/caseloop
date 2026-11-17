@@ -1,0 +1,65 @@
+PS C:\Users\Admin\Documents\caseloop> Get-ChildItem -Recurse -Filter "*.py" | Select-String "@app\."
+
+backend\app\main.py:9:@app.get("/")
+backend\venv\Lib\site-packages\fastapi\applications.py:235:             
+   * `@app.get("/users/", tags=["users"])`
+backend\venv\Lib\site-packages\fastapi\applications.py:236:             
+   * `@app.get("/items/", tags=["items"])`
+backend\venv\Lib\site-packages\fastapi\applications.py:388:             
+   @app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\applications.py:497:             
+   `@app.exception_handler()`.
+backend\venv\Lib\site-packages\fastapi\applications.py:1235:        
+@app.websocket("/ws")
+backend\venv\Lib\site-packages\fastapi\applications.py:1802:        
+@app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\applications.py:2180:        
+@app.put("/items/{item_id}")
+backend\venv\Lib\site-packages\fastapi\applications.py:2558:        
+@app.post("/items/")
+backend\venv\Lib\site-packages\fastapi\applications.py:2931:        
+@app.delete("/items/{item_id}")
+backend\venv\Lib\site-packages\fastapi\applications.py:3304:        
+@app.options("/items/")
+backend\venv\Lib\site-packages\fastapi\applications.py:3677:        
+@app.head("/items/", status_code=204)
+backend\venv\Lib\site-packages\fastapi\applications.py:4055:        
+@app.patch("/items/")
+backend\venv\Lib\site-packages\fastapi\applications.py:4428:        
+@app.put("/items/{item_id}")
+backend\venv\Lib\site-packages\fastapi\applications.py:4524:        
+@app.middleware("http")
+backend\venv\Lib\site-packages\fastapi\applications.py:4572:        
+@app.exception_handler(UnicornException)
+backend\venv\Lib\site-packages\fastapi\background.py:31:    
+@app.post("/send-notification/{email}")
+backend\venv\Lib\site-packages\fastapi\datastructures.py:53:    
+@app.post("/files/")
+backend\venv\Lib\site-packages\fastapi\datastructures.py:58:    
+@app.post("/uploadfile/")
+backend\venv\Lib\site-packages\fastapi\exceptions.py:29:    
+@app.get("/items/{item_id}")
+backend\venv\Lib\site-packages\fastapi\exceptions.py:93:    
+@app.websocket("/items/{item_id}/ws")
+backend\venv\Lib\site-packages\fastapi\param_functions.py:299:    
+@app.get("/items/{item_id}")
+backend\venv\Lib\site-packages\fastapi\param_functions.py:2272:    
+@app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\param_functions.py:2353:    
+@app.get("/users/me/items/")
+backend\venv\Lib\site-packages\fastapi\security\api_key.py:41:    
+@app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\security\api_key.py:140:    
+@app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\security\api_key.py:235:    
+@app.get("/items/")
+backend\venv\Lib\site-packages\fastapi\security\http.py:124:    
+@app.get("/users/me")
+backend\venv\Lib\site-packages\fastapi\security\http.py:244:    
+@app.get("/users/me")
+backend\venv\Lib\site-packages\fastapi\security\http.py:348:    
+@app.get("/users/me")
+backend\venv\Lib\site-packages\fastapi\security\oauth2.py:41:    
+@app.post("/login")
+backend\venv\Lib\site-packages\fastapi\security\oauth2.py:183:    
+@app.post("/login")

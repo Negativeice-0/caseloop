@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">CaseLoop authentication landing page concept</title>
+  <desc id="desc">A responsive humanitarian operations portal landing page with sign-in at the right and dispatch registration in the center.</desc>
+  <rect width="1440" height="900" fill="#F8FAFC"/>
+  <rect x="0" y="0" width="1440" height="8" fill="#C62828"/>
+  <rect x="44" y="38" width="58" height="58" rx="18" fill="#C62828"/>
+  <path d="M56 68h10l6-12 9 25 7-14h7" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="118" y="66" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#0F172A">Case<tspan fill="#C62828">Loop</tspan></text>
+  <text x="119" y="88" font-family="Arial, sans-serif" font-size="13" fill="#64748B">Karen-Lang'ata Operations</text>
+  <rect x="1280" y="47" width="116" height="44" rx="13" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <text x="1338" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#334155">Sign in</text>
+  <circle cx="1310" cy="69" r="4" fill="#C62828"/>
+
+  <rect x="493" y="242" width="454" height="35" rx="17" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <circle cx="515" cy="259" r="5" fill="#C62828"/>
+  <text x="530" y="264" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#991B1B">COORDINATOR WORKSPACE</text>
+  <text x="720" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="53" font-weight="700" fill="#0F172A">Field information,</text>
+  <text x="720" y="416" text-anchor="middle" font-family="Arial, sans-serif" font-size="53" font-weight="700" fill="#C62828">clear assignments.</text>
+  <text x="720" y="471" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#475569">Review incoming reports, publish approved responses,</text>
+  <text x="720" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" fill="#475569">coordinate teams, and prepare traceable operational reports.</text>
+  <rect x="562" y="551" width="316" height="62" rx="15" fill="#C62828"/>
+  <text x="720" y="589" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Launch Dispatch Portal  →</text>
+  <text x="720" y="658" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#475569">Administrator sign-in</text>
+  <line x1="668" y1="665" x2="772" y2="665" stroke="#CBD5E1" stroke-width="2"/>
+
+  <line x1="44" y1="838" x2="1396" y2="838" stroke="#E2E8F0"/>
+  <text x="720" y="871" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#94A3B8">Human-reviewed coordination  •  Synthetic data until approved for operations</text>
+</svg>
