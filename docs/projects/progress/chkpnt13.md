@@ -1,0 +1,1 @@
+Go to chkpnt13-pending.md -- and work on phase one then after finishing go to continuing for the log entry prompt
