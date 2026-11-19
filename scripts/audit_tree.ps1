@@ -1,4 +1,4 @@
-﻿# scripts/audit_tree.ps1
+﻿# To run : \scripts\audit_tree.ps1
 Write-Host "🔍 Auditing CaseLoop Project Directory Tree..." -ForegroundColor Cyan
 
 $excluded = 'node_modules|venv|\.git|__pycache__|dist|build|\.pytest_cache'
