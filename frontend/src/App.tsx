@@ -31,15 +31,22 @@ export default function App() {
       .finally(() => setSessionChecked(true));
   }, []);
 
-  const checkStatus = async () => {
+const checkStatus = async () => {
     try {
       const health = await checkBackendHealth();
+      
       if (health.status === 'online') {
         setBackendStatus('online');
-        setDatabaseMode(health.database === 'sqlite' ? 'sqlite' : 'postgresql');
+        
+        // Handle database mode safely whether admin data or regular fallback is returned
+        if (health.database) {
+          setDatabaseMode(health.database.toLowerCase().includes('postgres') ? 'postgresql' : 'sqlite');
+        }
+        
         setError(null);
       }
-    } catch {
+    } catch (err) {
+      // Only triggered if the backend is truly unreachable / offline
       setBackendStatus('offline');
       setDatabaseMode('unknown');
       setError('Backend is unreachable. Start the API and refresh.');

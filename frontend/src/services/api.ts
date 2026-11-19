@@ -19,11 +19,30 @@ async function apiFetch(input: RequestInfo | URL, init: RequestInit = {}): Promi
 }
 
 export async function checkBackendHealth() {
-  // Instead of hitting the unproxied root '/', hit a valid API endpoint 
-  // that goes through the Vite proxy, such as system status or intakes
-  const res = await apiFetch(`${API_BASE_URL}/admin/system-status`);
-  if (!res.ok) throw new Error('Backend health check failed');
-  return res.json();
+  try {
+    const res = await apiFetch(`${API_BASE_URL}/admin/system-status`);
+    
+    // If user is an admin, return the full system data (includes database type)
+    if (res.ok) {
+      return await res.json();
+    }
+    
+    // If user is a regular user, the server responds with 403 Forbidden.
+    // This means the BACKEND IS ALIVE, but the user is not an admin.
+    if (res.status === 403) {
+      return {
+        status: "online",
+        database: "sqlite", // Safe fallback or default for regular users
+        role: "regular"
+      };
+    }
+  } catch (error) {
+    // True network errors (e.g., backend server is completely turned off) land here
+    console.warn("Network request failed:", error);
+  }
+
+  // If everything failed, throw so the caller knows the server is offline
+  throw new Error('Backend health check failed');
 }
 
 export interface CurrentUser {

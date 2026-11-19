@@ -121,3 +121,18 @@ Assuming VMS means a volunteer management system, CaseLoop should complement it 
 Keep the VMS as the source of truth for people. Before any integration or roster import, agree with the organization on the specific VMS, data owner, access, retention, and approved API/export. No particular VMS product was supplied, so this is a boundary comparison, not a feature-by-feature vendor assessment.
 
 See [deployment guide](docs/deployment/DEPLOYMENT.md), [implementation notes](docs/projects/caseloop/IMPLEMENTATION.md), [product overview](docs/projects/caseloop/OVERVIEW.md), and [Checkpoint 6](docs/projects/progress/chkpnt6.md).
+
+---
+
+### README and logbook timing
+Do not wait until Oracle hosting and WhatsApp are complete. Maintain:
+
+A small current README now.
+
+An audit file for uncertain or stale claims.
+
+Deployment and WhatsApp documentation as separate guides.
+
+A final readiness update only after live hosting and integration testing.
+
+For the logbook, wait until the end of the workday or a natural stopping point. Your previous summary supports an estimated eight-hour session, but record that as estimated unless you tracked exact time. The sub-50-word template is suitable; use it after each completed session, not after every interaction.
