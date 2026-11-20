@@ -1,0 +1,107 @@
+PS C:\Users\Admin\Documents\caseloop> $RepoRoot = (Get-Location).Path
+PS C:\Users\Admin\Documents\caseloop> $Stamp = Get-Date -Format "yyyyMMdd-HHmmss"
+PS C:\Users\Admin\Documents\caseloop> $BaselineDir = Join-Path $env:TEMP ("CaseLoop-Baseline-" + $Stamp)
+PS C:\Users\Admin\Documents\caseloop> New-Item -ItemType Directory -Path $BaselineDir -Force | Out-Null
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> Write-Host "Repository root:"
+Repository root:
+PS C:\Users\Admin\Documents\caseloop> Write-Host $RepoRoot
+C:\Users\Admin\Documents\caseloop
+PS C:\Users\Admin\Documents\caseloop> Write-Host ""
+
+PS C:\Users\Admin\Documents\caseloop> Write-Host "Baseline capture directory:"
+Baseline capture directory:
+PS C:\Users\Admin\Documents\caseloop> Write-Host $BaselineDir
+C:\Users\Admin\AppData\Local\Temp\CaseLoop-Baseline-20261119-150509
+PS C:\Users\Admin\Documents\caseloop> Write-Host ""
+
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> Write-Host "Candidate project and test/build files:"
+Candidate project and test/build files:
+PS C:\Users\Admin\Documents\caseloop> Get-ChildItem -Path $RepoRoot -Recurse -File -Force |
+>>     Where-Object {
+>>         $_.FullName -notmatch '\\(node_modules|\.git|\.venv|venv|__pycache__|dist|build|coverage|\.next|\.pytest_cache)\\' -and
+>>         $_.Name -in @(
+>>             'package.json',
+>>             'package-lock.json',
+>>             'npm-shrinkwrap.json',
+>>             'yarn.lock',
+>>             'pnpm-lock.yaml',
+>>             'pyproject.toml',
+>>             'pytest.ini',
+>>             'tox.ini',
+>>             'setup.cfg',
+>>             'requirements.txt',
+>>             'manage.py',
+>>             'Dockerfile',
+>>             'docker-compose.yml',
+>>             'docker-compose.yaml'
+>>         )
+>>     } |
+>>     Select-Object -ExpandProperty FullName |
+>>     Tee-Object -FilePath (Join-Path $BaselineDir 'discovered-project-files.txt')
+C:\Users\Admin\Documents\caseloop\docker-compose.yml
+C:\Users\Admin\Documents\caseloop\backend\Dockerfile
+C:\Users\Admin\Documents\caseloop\backend\requirements.txt
+C:\Users\Admin\Documents\caseloop\frontend\package-lock.json
+C:\Users\Admin\Documents\caseloop\frontend\package.json
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> Write-Host ""
+
+PS C:\Users\Admin\Documents\caseloop> Write-Host "Frontend package scripts, if package.json exists:"
+Frontend package scripts, if package.json exists:
+PS C:\Users\Admin\Documents\caseloop> $PackageFiles = Get-ChildItem -Path $RepoRoot -Recurse -File -Filter 'package.json' -Force |
+>>     Where-Object {
+>>         $_.FullName -notmatch '\\(node_modules|\.git)\\'
+>>     }
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> foreach ($PackageFile in $PackageFiles) {
+>>     Write-Host ""
+>>     Write-Host ("--- " + $PackageFile.FullName + " ---")
+>>     try {
+>>         $PackageJson = Get-Content -LiteralPath $PackageFile.FullName -Raw | ConvertFrom-Json
+>>         if ($null -ne $PackageJson.scripts) {
+>>             $PackageJson.scripts | Format-List | Out-String | Write-Host
+>>         }
+>>         else {
+>>             Write-Host "No scripts object found."
+>>         }
+>>     }
+>>     catch {
+>>         Write-Host ("Could not parse package.json: " + $_.Exception.Message)
+>>     }
+>> }
+
+--- C:\Users\Admin\Documents\caseloop\frontend\package.json ---
+
+
+dev     : vite
+build   : tsc && vite build
+preview : vite preview
+
+
+
+
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> Write-Host ""
+
+PS C:\Users\Admin\Documents\caseloop> Write-Host "Python test configuration indicators:"
+Python test configuration indicators:
+PS C:\Users\Admin\Documents\caseloop> Get-ChildItem -Path $RepoRoot -Recurse -File -Force |
+>>     Where-Object {
+>>         $_.FullName -notmatch '\\(node_modules|\.git|\.venv|venv|__pycache__)\\' -and
+>>         $_.Name -in @('pyproject.toml','pytest.ini','tox.ini','setup.cfg','requirements.txt','manage.py')
+>>     } |
+>>     ForEach-Object {
+>>         Write-Host $_.FullName
+>>     } |
+>>     Tee-Object -FilePath (Join-Path $BaselineDir 'python-test-indicators.txt')
+C:\Users\Admin\Documents\caseloop\backend\requirements.txt
+PS C:\Users\Admin\Documents\caseloop> 
+PS C:\Users\Admin\Documents\caseloop> Write-Host ""
+
+PS C:\Users\Admin\Documents\caseloop> Write-Host "The discovery phase is complete."
+The discovery phase is complete.
+PS C:\Users\Admin\Documents\caseloop> Write-Host "No application files were changed."
+No application files were changed.
+PS C:\Users\Admin\Documents\caseloop> 
