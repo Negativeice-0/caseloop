@@ -1,8 +1,9 @@
 Use this single PowerShell script to validate the final repository state and generate a concise handoff file.
 
-Powershell
+Powershell to be run in terminal directly to create run all commands below
 
-Copy
+# Copy
+
 $ErrorActionPreference = 'Stop'
 
 # Expected final state

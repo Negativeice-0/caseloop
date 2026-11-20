@@ -1,0 +1,1 @@
+I was just having ai review itself like a senior engineer and it suggested a decions page -- i ignored it of course -- still new and tired of soo many documents everywhere.

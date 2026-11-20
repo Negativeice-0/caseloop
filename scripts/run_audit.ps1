@@ -3,7 +3,7 @@
 $ErrorActionPreference = "Stop"
 
 $rawDirectory = ".\docs\auditing\data\rawshell"
-$rawFile = Join-Path $rawDirectory "phasendata.txt"
+$rawFile = Join-Path $rawDirectory "phase1data.txt"
 
 New-Item -ItemType Directory -Force -Path $rawDirectory | Out-Null
 
