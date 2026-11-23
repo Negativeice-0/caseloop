@@ -556,6 +556,108 @@ The session summary is a required phase artifact.
 
 Missing session-summary.md constitutes an incomplete phase deliverable.
 
+================================================================
+
+KNOWLEDGE PROMOTION STANDARD
+
+Audit artifacts are temporary evidence.
+
+When recurring facts, architecture understanding,
+workflows, ownership models, authorization models,
+or system behavior become sufficiently understood,
+they should be promoted into:
+
+.\docs\knowledge\
+
+Purpose:
+
+- Prevent rediscovery.
+- Reduce repeated audits.
+- Preserve institutional knowledge.
+- Reduce dependence on AI assistance.
+- Allow future engineers to understand the system directly from repository documentation.
+
+Examples:
+
+- frontend-architecture.md
+- backend-architecture.md
+- authorization-model.md
+- deployment-model.md
+- workflow-reference.md
+
+Evidence should eventually become knowledge.
+
+Knowledge should eventually reduce the need for evidence collection.
+
+================================================================
+
+AUDIT LOGBOOK STANDARD
+
+Every completed session must append a concise entry to:
+
+.\docs\auditing\logbook.md
+
+Entry Format:
+
+- Date
+- Phase
+- Objective
+- Outcome
+- Verification Status
+- Key Findings
+- Key Risks
+- Next Recommended Action
+
+Purpose:
+
+- Preserve audit history.
+- Preserve decision history.
+- Preserve troubleshooting history.
+- Reduce dependence on chat history.
+
+The logbook is cumulative and must never be overwritten.
+
+================================================================
+
+AI INDEPENDENCE STANDARD
+
+AI should be treated as:
+
+- mentor
+- reviewer
+- accelerator
+- verifier
+
+AI should not become a permanent substitute for understanding.
+
+Preferred progression:
+
+Stage 1:
+AI demonstrates.
+
+Stage 2:
+AI assists.
+
+Stage 3:
+Human implements with AI review.
+
+Stage 4:
+Human implements and verifies.
+
+Stage 5:
+AI becomes optional.
+
+Whenever practical:
+
+- Explain findings in your own words.
+- Read generated reports.
+- Read relevant source code.
+- Verify AI conclusions through evidence.
+- Prefer understanding over completion speed.
+
+Success is measured not only by project completion,
+but also by increasing engineering independence.
+
 ---
 
 
