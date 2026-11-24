@@ -15,7 +15,7 @@ try {
 
     Write-Host ""
     Write-Host "📁 Auditing project directory tree..." -ForegroundColor Cyan
-    & ".\scripts\all-files\audit_tree.ps1"
+    & ".\scripts\auditing\phase1\audit_tree.ps1"
 
     Write-Host ""
     Write-Host "🌐 Add approved health-check commands here if needed." `

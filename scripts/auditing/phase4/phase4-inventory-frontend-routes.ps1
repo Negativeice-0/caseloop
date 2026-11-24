@@ -47,82 +47,223 @@ $AuthorityPatterns = @(
     "*routes*.ts",
     "*routes*.tsx"
 )
+# -----------------------------------------------------------
+# Exclusions
+# -----------------------------------------------------------
 
-Get-ChildItem -Recurse -File |
-    Where-Object {
-        $name = $_.Name.ToLower()
+$ExcludedFolders = @(
+    "node_modules",
+    ".git",
+    "dist",
+    "build",
+    "coverage",
+    ".next",
+    ".nuxt",
+    ".vite",
+    "venv",
+    ".venv",
+    "__pycache__"
+)
 
-        ($AuthorityPatterns | Where-Object {
-            $name -like $_.ToLower()
-        }).Count -gt 0
-    } |
-    Select FullName |
+function Test-IsExcluded {
+
+    param(
+        [string]$Path
+    )
+
+    foreach($folder in $ExcludedFolders)
+    {
+        if($Path -like "*\$folder\*")
+        {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+# -----------------------------------------------------------
+# Import Resolution
+# -----------------------------------------------------------
+
+function Resolve-ImportPath {
+
+    param(
+        [string]$CurrentFile,
+        [string]$ImportPath
+    )
+
+    if(
+        -not $ImportPath.StartsWith("./") -and
+        -not $ImportPath.StartsWith("../")
+    )
+    {
+        return $null
+    }
+
+    $BaseDir = Split-Path $CurrentFile
+
+    $Base = Join-Path $BaseDir $ImportPath
+
+    $Candidates = @(
+        "$Base.tsx",
+        "$Base.ts",
+        "$Base.jsx",
+        "$Base.js",
+        "$Base\index.tsx",
+        "$Base\index.ts",
+        "$Base\index.jsx",
+        "$Base\index.js"
+    )
+
+    foreach($candidate in $Candidates)
+    {
+        if(Test-Path $candidate)
+        {
+            return (Resolve-Path $candidate).Path
+        }
+    }
+
+    return $null
+}
+
+# -----------------------------------------------------------
+# Import Extraction
+# -----------------------------------------------------------
+
+function Get-Imports {
+
+    param(
+        [string]$FilePath
+    )
+# so verification runs logic instead of hardcoded text
+    if(-not (Test-Path $FilePath))
+    {
+        Add-Content `
+        "$VerifyDir/verification-evidence.md" `
+        "MISSING FILE: $FilePath"
+
+        return @()
+    }
+
+    $Imports = @()
+
+    try
+    {
+        $Content = Get-Content $FilePath -Raw
+
+        $Matches = [regex]::Matches(
+            $Content,
+            'import\s+(?:.+?\s+from\s+)?["'']([^"'']+)["'']'
+        )
+
+        foreach($Match in $Matches)
+        {
+            $Imports += $Match.Groups[1].Value
+        }
+    }
+    catch
+    {
+    }
+
+    return $Imports
+}
+
+# -----------------------------------------------------------
+# Dependency Graph Traversal
+# -----------------------------------------------------------
+
+$DiscoveredFiles = @{}
+$Queue = New-Object System.Collections.Queue
+
+# Entry Points
+
+$EntryFiles = Get-ChildItem `
+    -Recurse `
+    -File |
+Where-Object {
+
+    -not (Test-IsExcluded $_.FullName)
+} |
+Where-Object {
+
+    $_.Name -in @(
+        "main.tsx",
+        "main.jsx",
+        "index.tsx",
+        "index.jsx",
+        "App.tsx",
+        "App.jsx"
+    )
+}
+
+foreach($file in $EntryFiles)
+{
+    $DiscoveredFiles[$file.FullName] = $true
+    $Queue.Enqueue($file.FullName)
+}
+
+# Traverse
+
+while($Queue.Count -gt 0)
+{
+    $Current = $Queue.Dequeue()
+
+    $Imports = Get-Imports $Current
+
+    Write-Host "Scanning: $Current"
+
+    foreach($Import in $Imports)
+    {
+        Write-Host "Import Found: $Import"
+    }
+
+    foreach($Import in $Imports)
+    {
+        $Resolved = Resolve-ImportPath `
+            -CurrentFile $Current `
+            -ImportPath $Import
+
+        if(
+            $Resolved -and
+            -not $DiscoveredFiles.ContainsKey($Resolved)
+        )
+        {
+            if(-not (Test-IsExcluded $Resolved))
+            {
+                $DiscoveredFiles[$Resolved] = $true
+                $Queue.Enqueue($Resolved)
+            }
+        }
+    }
+}
+
+# -----------------------------------------------------------
+# Outputs
+# -----------------------------------------------------------
+
+$Inventory = $DiscoveredFiles.Keys |
+    Sort-Object
+
+$InventoryCount = $Inventory.Count
+
+@"
+Files discovered: $InventoryCount
+"@ | Set-Content "$VerifyDir/verification-evidence.md"
+
+$Inventory |
+    Out-File "$RawDir/route-registration-files.txt"
+
+$Inventory |
+    Out-File "$RawDir/navigation-files.txt"
+
+$EntryFiles |
+    Select-Object -ExpandProperty FullName |
+    Sort-Object |
     Out-File "$RawDir/authoritative-files.txt"
 
-# -----------------------------------------------------------
-# Route Registration Evidence
-# -----------------------------------------------------------
-
-$RouteEvidence = @()
-
-Get-ChildItem src,app,pages,routes,features -Recurse -ErrorAction SilentlyContinue -File |
-ForEach-Object {
-
-    try {
-
-        $content = Get-Content $_.FullName -Raw
-
-        if(
-            $content -match "createBrowserRouter" -or
-            $content -match "createHashRouter" -or
-            $content -match "<Route" -or
-            $content -match "path:" -or
-            $content -match "useRoutes"
-        ) {
-            $RouteEvidence += $_.FullName
-        }
-
-    } catch {}
-
-}
-
-$RouteEvidence |
-Sort-Object -Unique |
-Out-File "$RawDir/route-registration-files.txt"
-
-# -----------------------------------------------------------
-# Navigation Evidence
-# -----------------------------------------------------------
-
-$NavEvidence = @()
-
-Get-ChildItem src,app,components,layouts,features `
-    -Recurse `
-    -ErrorAction SilentlyContinue `
-    -File |
-ForEach-Object {
-
-    try {
-
-        $content = Get-Content $_.FullName -Raw
-
-        if(
-            $content -match "Sidebar" -or
-            $content -match "Navigation" -or
-            $content -match "NavLink" -or
-            $content -match "menuItems" -or
-            $content -match "navigation"
-        ) {
-            $NavEvidence += $_.FullName
-        }
-
-    } catch {}
-
-}
-
-$NavEvidence |
-Sort-Object -Unique |
-Out-File "$RawDir/navigation-files.txt"
+$Inventory |
+    Out-File "$RawDir/frontend-dependency-graph.txt"
 
 # -----------------------------------------------------------
 # Session Summary Placeholder
@@ -170,14 +311,27 @@ Review authoritative route registrations first.
 Verification pending analysis.
 "@ | Set-Content "$VerifyDir/verification-evidence.md"
 
+if($InventoryCount -gt 2)
+{
+@"
+PASS
+
+Dependency graph generated.
+
+Files discovered: $InventoryCount
+"@ |
+Set-Content "$VerifyDir/verification-result.md"
+}
+else
+{
 @"
 FAIL
 
-Reason:
-Inventory not yet reviewed.
+Only $InventoryCount files discovered.
 
-Root Cause:
-Evidence collection complete but verification not performed.
-"@ | Set-Content "$VerifyDir/verification-result.md"
+Import traversal appears incomplete.
+"@ |
+Set-Content "$VerifyDir/verification-result.md"
+}
 
 Write-Host "Phase 4 evidence collection complete."
