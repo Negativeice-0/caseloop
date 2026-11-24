@@ -1,0 +1,3 @@
+Yes audit tree prints all files,
+ run_audit runs it with comments,
+  but using the terminal works too.
