@@ -171,6 +171,19 @@ Broad searches are secondary evidence.
 
 Authoritative sources always take precedence.
 
+Dependency Discovery Rule
+
+After identifying entry points:
+
+Entry Point
+→ Import Graph
+→ Registrations
+→ Evidence
+→ Inventory
+→ Verification
+
+Prefer dependency traversal over directory scanning whenever feasible.
+
 ================================================================
 
 EVIDENCE HIERARCHY
