@@ -76,6 +76,11 @@ When you start your next session, copy and paste this exact opening prompt along
 # The Logbook Entry Prompt
 To generate future logbook entries instantly in this exact sub-50-word format, use this prompt:
 
-"Summarize my 8-hour engineering and code-review session into a strict sub-50-word academic logbook entry covering: Work done, Effective rating (1-10), Self-rating reason, Knowledge/skills learned/applied, and Problems encountered/solved."
+"Summarize my 8-hour engineering and code-review session into a strict sub-50-word academic logbook entry covering: Work done, Effective rating (1-10), Self-rating reason, Knowledge/skills learned/applied, and Problems encountered/solved, people interected with."
 
 Write the complete phased implementation plan with repository structure, milestones, acceptance criteria, risks, and checklists
+
+Make the complete prompt more concise in markdown code form ready to copy and paste.
+
+
+Use master prompt first for audint then later learn prompt.

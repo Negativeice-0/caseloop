@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261124084056
+Start time: 20261125120515
 Username: DESKTOP-I3HT85V\Admin
 RunAs User: DESKTOP-I3HT85V\Admin
 Configuration Name: 
 Machine: DESKTOP-I3HT85V (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass
-Process ID: 14416
+Process ID: 9772
 PSVersion: 5.1.26100.7705
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7705
@@ -98,12 +98,16 @@ Root: C:\Users\Admin\Documents\caseloop
   ├── docs\Auditing\data\fullstack\phase4\session-summary.md
   ├── docs\Auditing\data\fullstack\phase4-contaminated-20261123-101603\frontend-route-audit.txt
   ├── docs\Auditing\data\fullstack\phase4-failed-20261120-153133\frontend-route-audit.txt
+  ├── docs\Auditing\data\fullstack\phase5\authorization-dependencies.json
+  ├── docs\Auditing\data\fullstack\phase5\backend-route-inventory.json
+  ├── docs\Auditing\data\fullstack\phase5\session-summary.md
   ├── docs\Auditing\data\rawshell\phase1\phase1data.txt
   ├── docs\Auditing\data\rawshell\phase1data.txt
   ├── docs\Auditing\data\rawshell\phase2\phase2data.txt
   ├── docs\Auditing\data\rawshell\phase3data\phase3-summary-20261120_122901.txt
   ├── docs\Auditing\data\rawshell\phase3data\raw-terminal-20261120_122901.txt
   ├── docs\Auditing\data\rawshell\phase4\authoritative-files.txt
+  ├── docs\Auditing\data\rawshell\phase4\frontend-dependency-graph.txt
   ├── docs\Auditing\data\rawshell\phase4\git-branch.txt
   ├── docs\Auditing\data\rawshell\phase4\git-sha.txt
   ├── docs\Auditing\data\rawshell\phase4\git-status.txt
@@ -118,15 +122,21 @@ Root: C:\Users\Admin\Documents\caseloop
   ├── docs\Auditing\data\rawshell\phase4-failed-20261120-153133\git-status.txt
   ├── docs\Auditing\data\rawshell\phase4-failed-20261120-153133\node-version.txt
   ├── docs\Auditing\data\rawshell\phase4-failed-20261120-153133\npm-version.txt
+  ├── docs\Auditing\data\rawshell\phase5\backend-entrypoints.txt
+  ├── docs\Auditing\data\rawshell\phase5\backend-route-auth-evidence.txt
   ├── docs\Auditing\data\snrlead\phase1\day1.md
   ├── docs\Auditing\data\snrlead\phase2\day2.md
   ├── docs\Auditing\data\snrlead\phase3\day3.md
+  ├── docs\Auditing\data\snrlead\phase4\summary.md
   ├── docs\Auditing\data\snrlead\phase4-contaminated-20261123-101603\senior-review.txt
   ├── docs\Auditing\data\snrlead\phase4-failed-20261120-153133\senior-review.txt
-  ├── docs\Auditing\logbook.md
-  ├── docs\Auditing\overview1.md
+  ├── docs\Auditing\data\snrlead\phase5\backend-auth-review.md
+  ├── docs\Auditing\verification\phase4\dicovery.md
+  ├── docs\Auditing\verification\phase4\summary.md
   ├── docs\Auditing\verification\phase4\verification-evidence.md
   ├── docs\Auditing\verification\phase4\verification-result.md
+  ├── docs\Auditing\verification\phase5\verification-evidence.md
+  ├── docs\Auditing\verification\phase5\verification-result.md
   ├── docs\Auditing\week1.md
   ├── docs\deployment\copyright.md
   ├── docs\deployment\DEPLOYMENT.md
@@ -143,6 +153,10 @@ Root: C:\Users\Admin\Documents\caseloop
   ├── docs\design\mockups\response-register.svg
   ├── docs\design\README.md
   ├── docs\design\workflow.mmd
+  ├── docs\knowledge\overview.md
+  ├── docs\knowledge\phase4\k1.md
+  ├── docs\knowledge\phase4\overview.md
+  ├── docs\knowledge\scripting\101.md
   ├── docs\projects\Continuing.md
   ├── docs\projects\handover.md
   ├── docs\projects\overview\.vsconfig
@@ -181,11 +195,13 @@ Root: C:\Users\Admin\Documents\caseloop
   ├── docs\projects\yesterday.md
   ├── docs\Tips\AUTONOMY.MD
   ├── docs\Tips\Backup.md
-  ├── docs\Tips\Failures.md
+  ├── docs\Tips\CEO.md
+  ├── docs\Tips\LearnPrompt.md
   ├── docs\Tips\MasterPrompt.md
   ├── docs\Tips\NewSession.md
   ├── docs\Tips\NoTchMaster.md
   ├── docs\Tips\ProGuide.md
+  ├── docs\Tips\SessionSummary.md
   ├── docs\Tips\TIP1.md
   ├── docs\Tips\WhyTimeFlies.md
   ├── docs\training\attachment-final-report-draft.md
@@ -237,13 +253,16 @@ Root: C:\Users\Admin\Documents\caseloop
   ├── scripts\auditing\phase2\git-stuff.md
   ├── scripts\auditing\phase3\Create-Phase3Audit.ps1
   ├── scripts\auditing\phase4\Archive-Phase4-FailedRun.ps1
+  ├── scripts\auditing\phase4\Audit-Phase4-FrontendInventory.backup.ps1
   ├── scripts\auditing\phase4\Audit-Phase4-FrontendInventory.ps1
+  ├── scripts\auditing\phase4\phase4-inventory-frontend-routes.backup.ps1
   ├── scripts\auditing\phase4\phase4-inventory-frontend-routes.ps1
+  ├── scripts\createScript.md
   ├── scripts\extract_audit.ps1
   ├── scripts\setup.ps1
   ├── scripts\test_ollama.ps1
 
-✅ Audit complete. Total files found: 219
+✅ Audit complete. Total files found: 238
 Excluded: node_modules|venv|\.venv|\.git|__pycache__|dist|build|coverage|\.pytest_cache
 
 🌐 Add approved health-check commands here if needed.
@@ -251,5 +270,5 @@ Excluded: node_modules|venv|\.venv|\.git|__pycache__|dist|build|coverage|\.pytes
 ✅ Audit commands completed.
 **********************
 Windows PowerShell transcript end
-End time: 20261124084059
+End time: 20261125120517
 **********************

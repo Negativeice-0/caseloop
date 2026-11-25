@@ -1,0 +1,8 @@
+
+FullName                                                     
+--------                                                     
+C:\Users\Admin\Documents\caseloop\backend\app\main.py        
+C:\Users\Admin\Documents\caseloop\frontend\src\types\index.ts
+
+
+
