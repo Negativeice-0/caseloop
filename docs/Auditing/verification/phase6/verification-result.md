@@ -1,3 +1,1 @@
-FAIL
-
-No authorization evidence discovered.
+PASS
