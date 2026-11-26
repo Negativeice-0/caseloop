@@ -1,21 +1,88 @@
-# Control center
+# CaseLoop Control Center
 
-- What prompt do I use?
- 
-- Where does output go?
- 
-- What files matter?
- 
-- How do I grow the system safely?
- 
-- How do I update AI with my progress?
- 
-- How do I work when AI is unavailable?
- 
-- How do I refactor safely?
- 
-- How do I build toward a large-scale product?
+## Principles
 
-## context?
+Evidence > Assumptions
 
-inside handbook, context.md is where you will find guidance on how to acquire the data that will allow a new session to understand what your app is all about.
+Artifacts > Script Output
+
+Verified Facts > Search Hits
+
+Authoritative Sources > Repository Scans
+
+Discover Once → Consume Many Times
+
+Normalize Before Analysis
+
+Verification Before Conclusions
+
+Small Safe Changes > Large Risky Changes
+
+---
+
+## Daily Startup
+
+Read:
+
+1. session-summary.md
+2. latest verification result
+
+Do NOT:
+
+- reread rawshell output
+- reread old audit phases
+- restart discovery
+- trust PASS without evidence
+
+---
+
+## Source Hierarchy
+
+1. Verified artifacts
+2. Session summary
+3. Authoritative source files
+4. Generated evidence
+5. Documentation
+
+Documentation never overrides code.
+
+---
+
+## Recovery If Lost
+
+Open:
+
+- backend-route-inventory.json
+- authorization-normalized.json
+- latest matrix summary
+
+Reconstruct from artifacts.
+
+Never reconstruct from memory.
+
+---
+
+## Learning Workflow
+
+Major milestone completed
+→ Run Learn Prompt
+→ Update knowledge base
+→ Update portfolio/brag sheet if relevant
+
+Do NOT run Learn Prompt every session.
+
+Only after significant discoveries or completed checkpoints.
+
+---
+
+## Long-Term Goal
+
+Understand systems well enough to:
+
+- safely modify them
+- verify them
+- explain them
+- hand them over
+- rebuild understanding from artifacts
+
+NB: chkpnt14-plan.md was the first master prompt.

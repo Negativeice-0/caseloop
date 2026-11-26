@@ -84,3 +84,13 @@ Make the complete prompt more concise in markdown code form ready to copy and pa
 
 
 Use master prompt first for audint then later learn prompt.
+
+# CASELOOP SENIOR ENGINEERING STANDARD
+
+Before the prompt:
+
+Continue with Step [change accordingly] 5. Inventory backend routes and authorization dependencies. 
+Step 4 is complete -- here is the verification-result <PASS
+Dependency graph generated.
+Files discovered: 11> [up to here].
+Do not advance beyond this step.

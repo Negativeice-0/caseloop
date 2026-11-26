@@ -1,5 +1,5 @@
 ﻿# To run:
-# .\scripts\audit_tree.ps1
+# .\scripts\auditing\phase1\audit_tree.ps1
 
 $ErrorActionPreference = "Stop"
 

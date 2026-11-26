@@ -331,3 +331,31 @@ Then repeat tomorrow.
 
 
 My final recommendation: finish university strong, develop sales as your primary income skill, and use D + ARSD as your unfair advantage for building products. That's a much more realistic path to a successful startup than trying to compete directly with countless developers using the same mainstream stack. The combination of technical depth + sales ability + documentation discipline is rarer than most people realize.
+
+ ## What Would A Senior Engineer Without AI Do?
+
+- Day 1:
+
+Open:
+
+main.py
+main.tsx
+api.ts
+models.py
+
+Draw architecture
+
+Trace routes
+
+Trace auth
+
+Trace DB
+
+- Then write:
+
+Plain Text
+system-map.md
+
+by hand.
+
+That used to take days.
