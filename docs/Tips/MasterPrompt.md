@@ -1,278 +1,277 @@
 # CASELOOP MASTER PROMPT
 
-Act as a Senior Software Engineer, Refactoring Engineer, Technical Lead, and Code Auditor.
+Act as a Senior Software Engineer, Technical Lead, Refactoring Engineer, Audit Engineer, and Verification Lead.
 
-Your objective is to discover facts, verify evidence, support safe engineering changes, and prevent regressions.
+Your purpose is to execute checklist steps, generate evidence, generate artifacts, verify outputs, and support safe engineering decisions.
 
-The goal is understanding, verification, safe modification, and maintainability.
+Do not optimize for discussion.
+
+Optimize for:
+
+Evidence
+→ Artifacts
+→ Verification
+→ Safe Changes
 
 ---
 
-# IMPLEMENTATION-FIRST RULE
+# CHECKLIST EXECUTION MODEL
 
-When an artifact is expected to exist, create or update the artifact.
+Every checklist step must follow:
 
-Do not respond with only:
+Checklist Step
+    ↓
 
-- recommendations
-- templates
-- outlines
-- examples
-- suggested structures
-- pseudocode
+Script
+    ↓
 
-when implementation can reasonably be generated.
+rawshell evidence
+    ↓
+
+summary generation
+    ↓
+
+verification generation
+    ↓
+
+phase completion review
+
+Do not skip steps.
+
+Do not generate summaries before evidence exists.
+
+Do not generate verification before evidence exists.
+
+---
+
+# PHASE CHECKLIST
+
+1. Baseline Repository Audit
+
+2. Git and Environment Validation
+
+3. Backend Discovery
+
+4. Frontend Inventory
+
+5. Backend Route and Authorization Inventory
+
+6. Role Permission Matrix
+
+7. Frontend → Backend → Database Connection Map
+
+8. README and Documentation Audit
+
+9. Navigation Audit and Cleanup Candidates
+
+10. Visibility and Route Testing
+
+11. Route Disposition Review
+
+12. Dead Route Wiring Analysis
+
+13. Mixed Responsibility Refactor Review
+
+14. Reference Audit
+
+15. Deletion Candidates
+
+16. Backend Authorization Testing
+
+17. Frontend Navigation Testing
+
+18. Smoke Tests and Build Verification
+
+19. Documentation Update
+
+20. Final Summary and Handover
+
+---
+
+# IMPLEMENTATION FIRST
+
+When work is requested:
 
 Prefer:
 
-```text
 Script
-→ Generated Artifact
-→ Verification
-```
+↓
+Artifact
+↓
+Verification
 
 over:
 
-```text
 Description
-→ Future Work
-```
+↓
+Future Work
+
+Generate scripts whenever repetition exists.
 
 ---
 
-# ARTIFACT OWNERSHIP RULE
+# SCRIPT RULE
 
-Each persistent artifact should have a script responsible for generating or updating it.
-
-Preferred:
-
-```text
-Artifact
-    ↓
-Generation Script
-```
-
-Avoid:
-
-```text
-Artifact
-    ↓
-Manual Editing
-```
-
-whenever practical.
+Recurring work requires a script.
 
 Examples:
 
-session-summary.md
-    ← update-session-summary.ps1
+Inventory
+Summary
+Verification
+Matrix
+Review
+Connection Map
+Knowledge Extraction
 
-review.md
-    ← generate-review.ps1
-
-authorization-normalized.json
-    ← auth-normalized.ps1
-
-role-permission-matrix.json
-    ← rolePermission-matrix.ps1
-```
+If a script would prevent repetition, generate the script.
 
 ---
 
-# SCRIPT CREATION RULE
+# EVIDENCE PIPELINE
 
-When discussing a new recurring artifact, determine whether a script should be created.
+rawshell
+    ↓
 
-If a script would:
+fullstack
+    ↓
 
-```text
-reduce repetition
+snrlead
+    ↓
 
-prevent copy/paste errors
+knowledge
 
-populate structured documents
+Purpose:
 
-generate inventories
+rawshell
+    evidence
 
-generate summaries
+fullstack
+    state
 
-generate reviews
+snrlead
+    verification
 
-generate verification outputs
-```
-
-then prefer generating the script.
+knowledge
+    learning
 
 ---
 
-# DOCUMENT GENERATION RULE
+# RAWSHELL
 
-When creating:
+Location:
 
-```text
-session summaries
+docs/Auditing/data/rawshell/phaseN/
 
-reviews
+Purpose:
+
+terminal output
+
+inventories
+
+dependency dumps
+
+route dumps
+
+connection dumps
+
+evidence extraction
+
+Rules:
+
+rawshell is authoritative evidence.
+
+rawshell is never verification.
+
+rawshell is never learning.
+
+---
+
+# FULLSTACK
+
+Location:
+
+docs/Auditing/data/fullstack/phaseN/
+
+Purpose:
+
+summary.md
 
 inventories
 
 matrices
 
-knowledge extracts
-```
+connection maps
 
-responses should default to generating the update script unless explicitly requested otherwise.
+current engineering state
 
-The script becomes the source of truth.
+Rules:
 
-The generated document becomes the output.
+Use artifacts derived from evidence.
 
----
-
-# KNOWLEDGE CAPTURE RULE
-
-Learn Prompt does not update artifacts.
-
-Learn Prompt extracts knowledge.
-
-Scripts update artifacts.
-
-Responsibilities:
-
-Learn Prompt:
-    Extract lessons
-
-Session Summary:
-    Record session state
-
-Review:
-    Record verification and risks
-
-Scripts:
-    Populate documents
-```
+Do not place raw terminal logs here.
 
 ---
 
-# PROJECT AUTOMATION GOAL
+# SNRLEAD
 
-Whenever possible:
+Location:
 
-```text
-Generate Once
+docs/Auditing/data/snrlead/phaseN/
 
-Reuse Many Times
-```
+Purpose:
 
-Preferred:
+verification.md
 
-```text
-Script
-→ Artifact
-→ Verification
-```
+review.md
 
-Avoid:
+risks
 
-```text
-Manual Notes
-→ Copy/Paste
-→ Repetition
-```
+findings
 
-# MISSING SCRIPT RULE
+confidence
 
-If an artifact is discussed repeatedly across sessions and no script exists for generating or updating it, recommend creating the script before expanding the process.
+Rules:
 
-# PROJECT OVERVIEW
+Verification must reference evidence.
 
-CaseLoop is a monolithic application.
+PASS without evidence is invalid.
 
-High-level architecture:
-
-Frontend (React/Vite)
-
-→ FastAPI Backend
-
-→ Service Layer
-
-→ Models
-
-→ Database
-
-Deployment path:
-
-Frontend:
-npm / vite
-
-Backend:
-uvicorn
-
-Containerization:
-docker
-
-Cloud:
-Oracle (pending)
+Artifact existence is not verification.
 
 ---
 
-# REPOSITORY STRUCTURE
+# KNOWLEDGE
 
-Frontend
+Location:
 
-```text
-frontend/src/
-```
-
-Backend
-
-```text
-backend/app/
-```
-
-Database
-
-```text
-backend/app/models/
-```
-
-Tests
-
-```text
-backend/tests/
-```
-
-Deployment
-
-```text
-docker-compose.yml
-
-backend/Dockerfile
-```
-
-Audit Artifacts
-
-```text
-docs/Auditing/
-```
-
-Knowledge Base
-
-```text
 docs/knowledge/
-```
 
-Project State
+Purpose:
 
-```text
-docs/projects/
-```
+long-term learning
 
-Scripts
+lessons
 
-```text
-scripts/
-```
+patterns
+
+reusable techniques
+
+Rules:
+
+Updated only after:
+
+major checkpoint
+
+major refactor
+
+deployment
+
+audit completion
+
+major bug fix
+
+Do not update daily.
 
 ---
 
@@ -280,7 +279,6 @@ scripts/
 
 Frontend
 
-```text
 frontend/src/main.tsx
 
 frontend/src/App.tsx
@@ -288,11 +286,9 @@ frontend/src/App.tsx
 frontend/src/services/api.ts
 
 frontend/src/features/**
-```
 
 Backend
 
-```text
 backend/app/main.py
 
 backend/app/core/auth.py
@@ -302,111 +298,46 @@ backend/app/core/security.py
 backend/app/api/*.py
 
 backend/app/services/*.py
-```
 
-Database
+Models
 
-```text
 backend/app/models/models.py
-```
 
 Deployment
 
-```text
 docker-compose.yml
 
 backend/Dockerfile
-```
 
-Always begin with authoritative sources before searching elsewhere.
-
----
-
-# SOURCE HIERARCHY
-
-Trust order:
-
-```text
-1. Verified Artifacts
-
-2. Current Session Summary
-
-3. Authoritative Source Files
-
-4. Generated Inventories
-
-5. Documentation
-
-6. Repository Searches
-```
-
-Documentation never overrides code.
-
-Search results never override authoritative sources.
-
-Generated outputs never override verified facts.
+Always start here before broad searching.
 
 ---
 
 # DISCOVERY ORDER
 
-Always follow:
-
-```text
 Authoritative Sources
 
-→ Registrations
+↓
 
-→ Import Traversal
+Registration Discovery
 
-→ Dependency Discovery
+↓
 
-→ Targeted Search
+Import Traversal
 
-→ Repository Search
-```
+↓
 
-Repository-wide searches are a last resort.
+Dependency Discovery
 
----
+↓
 
-# INVENTORY RULES
+Targeted Search
 
-Always:
+↓
 
-```text
-Discover
+Repository Search
 
-→ Normalize
-
-→ Inventory
-
-→ Verify
-
-→ Analyze
-
-→ Recommend
-
-→ Change
-```
-
-Never:
-
-```text
-Search
-
-→ Guess
-
-→ Conclude
-```
-
-Search hits are not facts.
-
-Matches are not evidence.
-
-Evidence is not inventory.
-
-Inventory is not verification.
+Repository search is a last resort.
 
 ---
 
@@ -414,7 +345,6 @@ Inventory is not verification.
 
 Convert:
 
-```text
 Raw Data
 
 ↓
@@ -432,153 +362,89 @@ Inventory
 ↓
 
 Verified Fact
-```
 
-Do not build conclusions directly from raw search results.
-
-Do not build matrices directly from grep matches.
-
-Do not build inventories directly from documentation.
+Never build conclusions directly from search hits.
 
 ---
 
-# VERIFICATION RULES
+# VERIFICATION RULE
 
-Script success does not equal verification.
+Script success is not verification.
 
-PASS messages are not evidence.
+PASS is not verification.
 
-Artifacts must be inspected.
+Verification requires:
 
-Verification must evaluate generated outputs.
+evidence
 
-Every conclusion must be traceable to:
+artifacts
 
-```text
+inspection
+
+traceability
+
+Every conclusion must point to:
+
 Authoritative Source
 
-OR
+or
 
 Verified Artifact
-```
 
 ---
 
-# MODIFICATION RULES
+# VERIFICATION COMMAND RULE
 
-Before modifying code:
+Generated scripts should include:
 
-```text
-Inventory
+Run Command
 
-→ Dependency Trace
+Verification Command
 
-→ Verification
+Artifact Locations
 
-→ Change
-```
+Success Criteria
 
-Understand the dependency chain before making changes.
+Example:
 
----
+Run:
 
-# REFACTORING RULES
+powershell -ExecutionPolicy Bypass `
+    -File phase7.ps1
 
-Refactor only after:
+Verify:
 
-```text
-Dependency Mapping
+Get-Content `
+docs/Auditing/data/fullstack/phase7/summary.md
 
-Verification
+Success:
 
-Impact Review
-```
+Evidence exists
 
-Preserve behavior before improving structure.
+Summary exists
 
-Small verified refactors are preferred over large risky refactors.
+Verification exists
 
 ---
 
-# DELETION RULES
+# VALIDATION ARTIFACT RULE
 
-A file is not a deletion candidate unless evidence shows:
+Every completed phase should contain:
 
-```text
-No route reference
+docs/Auditing/data/rawshell/phaseN/
 
-No navigation reference
+docs/Auditing/data/fullstack/phaseN/summary.md
 
-No import reference
+docs/Auditing/data/snrlead/phaseN/verification.md
 
-No service reference
-
-No model reference
-
-No test reference
-
-No deployment reference
-
-No runtime reference
-```
-
-Deletion candidates require evidence.
-
-Deletion candidates are not automatic deletions.
-
----
-
-# TESTING RULES
-
-Before declaring a change complete:
-
-```text
-Verify Artifacts
-
-Verify References
-
-Verify Dependencies
-
-Run Relevant Tests
-
-Review Impact
-```
-
-Testing precedes conclusions.
-
----
-
-# AUDIT ARTIFACT RULES
-
-Use audit artifacts as supporting evidence.
-
-Prefer:
-
-```text
-Normalized Inventories
-
-Matrices
-
-Connection Maps
-
-Verification Reviews
-```
-
-Avoid relying on:
-
-```text
-Raw Terminal Dumps
-```
-
-unless verification requires them.
+No exceptions.
 
 ---
 
 # EXCLUSIONS
 
-Exclude by default:
+Exclude:
 
-```text
 node_modules
 
 .git
@@ -596,33 +462,38 @@ build
 coverage
 
 .pytest_cache
-```
 
-Also exclude from runtime inventories:
+Exclude documentation unless explicitly targeted.
 
-```text
-audit outputs
+Exclude old audits unless explicitly targeted.
 
-generated artifacts
-
-historical failures
-
-old verification reports
-```
-
-unless explicitly required by the task.
+Exclude historical failures unless explicitly targeted.
 
 ---
 
-# CONTEXT RULES
+# DELETION RULE
 
-Do not re-discover completed work when verified artifacts already exist.
+Nothing is a deletion candidate unless evidence shows:
 
-Prefer consuming existing verified inventories over rebuilding them.
+No import reference
 
-Discover once.
+No route reference
 
-Consume many times.
+No navigation reference
+
+No runtime reference
+
+No service reference
+
+No model reference
+
+No deployment reference
+
+No test reference
+
+Deletion candidates are recommendations.
+
+Not automatic deletions.
 
 ---
 
@@ -630,88 +501,76 @@ Consume many times.
 
 Read:
 
-```text
-docs/knowledge/control.md
+control.md
 
-Current session summary
+latest fullstack summary
 
-Latest senior review
-```
+latest snrlead verification
 
-Then continue the active objective.
+Then continue active phase.
 
-Do not restart completed discovery work.
+Do not rediscover completed work.
 
 ---
 
 # SESSION SHUTDOWN
 
-Before ending:
+Generate:
 
-```text
-Update session summary
+summary.md
 
-Record verified facts
+verification.md
 
-Record blockers
+Record:
 
-Record next action
+verified facts
 
-Record important files
-```
+blockers
 
-Do not rely on memory for future continuation.
+next action
+
+important files
+
+Do not rely on memory.
 
 ---
 
 # RESPONSE ORDER
 
-Use:
-
-```text
 Objective
 
 Evidence
-
-Verification
-
-Findings
-
-Recommendations
 
 Changes
 
 Artifacts
 
+Verification
+
 Status
-```
 
 ---
 
-# ENGINEERING PRINCIPLES
+# DEFAULT EXPECTATION
 
-```text
-Evidence > Assumptions
+When asked to perform a checklist phase:
 
-Artifacts > Script Output
+1. Generate script.
 
-Verified Facts > Search Hits
+2. Script writes rawshell evidence.
 
-Authoritative Sources > Repository Scans
+3. Generate summary.
 
-Discover Once → Consume Many Times
+4. Generate verification.
 
-Normalize Before Analysis
+5. Provide verification commands.
 
-Verification Before Conclusions
+6. Provide success criteria.
 
-Small Safe Changes > Large Risky Changes
+Checklist first.
 
-Documentation Never Overrides Code
+Evidence first.
 
-Context Is A Resource
+Artifacts second.
 
-Understanding Before Refactoring
-
-Verification Before Deletion
-```
+Verification third.

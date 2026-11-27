@@ -1,194 +1,354 @@
 #Requires -Version 5.1
 
+<#
+========================================================================
+
+SESSION SUMMARY GENERATOR
+
+Purpose
+-------
+Generate:
+
+docs\Auditing\data\fullstack\<phase>\summary.md
+
+docs\Auditing\data\snrlead\<phase>\verification.md
+
+from rawshell evidence.
+
+Usage
+-----
+
+.\docs\Tips\SessionSummary.ps1 -Phase phase7
+
+========================================================================
+#>
+
+param(
+    [Parameter(Mandatory)]
+    [string]$Phase
+)
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+# ============================================================
+# Phase Definitions
+# ============================================================
+
+$PhaseInfo = @{
+
+    phase7 = @{
+        Objective =
+        "Frontend Backend Database Connection Map"
+
+        NextAction =
+        "Verify frontend feature to backend route mappings"
+
+        ImportantFiles = @(
+            "frontend/src/services/api.ts"
+            "frontend/src/features"
+            "backend/app/api"
+            "backend/app/services"
+            "backend/app/models/models.py"
+        )
+    }
+
+    phase8 = @{
+        Objective =
+        "README and Documentation Audit"
+
+        NextAction =
+        "Compare documentation claims against verified artifacts"
+
+        ImportantFiles = @(
+            "README.md"
+            "docs/deployment"
+            "docs/design"
+        )
+    }
+
+    phase9 = @{
+        Objective =
+        "Navigation Audit"
+
+        NextAction =
+        "Identify redundant navigation entries"
+
+        ImportantFiles = @(
+            "frontend/src/App.tsx"
+            "frontend/src/features"
+        )
+    }
+
+    phase10 = @{
+        Objective =
+        "Visibility and Route Testing"
+
+        NextAction =
+        "Verify access by role"
+
+        ImportantFiles = @(
+            "frontend/src"
+            "backend/app/api"
+        )
+    }
+
+    phase11 = @{
+        Objective =
+        "Route Disposition Review"
+
+        NextAction =
+        "Classify routes as retain, refactor, or candidate"
+
+        ImportantFiles = @(
+            "backend/app/api"
+        )
+    }
+
+    phase12 = @{
+        Objective =
+        "Dead Route Wiring Analysis"
+
+        NextAction =
+        "Trace route references"
+
+        ImportantFiles = @(
+            "frontend/src"
+            "backend/app/api"
+        )
+    }
+
+    phase13 = @{
+        Objective =
+        "Mixed Responsibility Refactor Review"
+
+        NextAction =
+        "Identify components containing multiple responsibilities"
+
+        ImportantFiles = @(
+            "frontend/src/features"
+            "backend/app/services"
+        )
+    }
+
+    phase14 = @{
+        Objective =
+        "Reference Audit"
+
+        NextAction =
+        "Trace all references before deletion review"
+
+        ImportantFiles = @(
+            "frontend/src"
+            "backend/app"
+        )
+    }
+
+    phase15 = @{
+        Objective =
+        "Deletion Candidates"
+
+        NextAction =
+        "Produce candidate list only"
+
+        ImportantFiles = @(
+            "frontend/src"
+            "backend/app"
+        )
+    }
+
+    phase16 = @{
+        Objective =
+        "Backend Authorization Tests"
+
+        NextAction =
+        "Review authorization coverage"
+
+        ImportantFiles = @(
+            "backend/tests"
+            "backend/app/core"
+        )
+    }
+
+    phase17 = @{
+        Objective =
+        "Frontend Navigation Tests"
+
+        NextAction =
+        "Validate navigation coverage"
+
+        ImportantFiles = @(
+            "frontend/src"
+        )
+    }
+
+    phase18 = @{
+        Objective =
+        "Smoke Tests and Build Verification"
+
+        NextAction =
+        "Run build and test validation"
+
+        ImportantFiles = @(
+            "frontend"
+            "backend"
+        )
+    }
+
+    phase19 = @{
+        Objective =
+        "Documentation Update"
+
+        NextAction =
+        "Bring documentation in line with verified system behavior"
+
+        ImportantFiles = @(
+            "README.md"
+            "docs"
+        )
+    }
+
+    phase20 = @{
+        Objective =
+        "Final Summary and Handover"
+
+        NextAction =
+        "Generate final review and handover package"
+
+        ImportantFiles = @(
+            "docs"
+        )
+    }
+}
+
+if(-not $PhaseInfo.ContainsKey($Phase))
+{
+    throw "Unknown phase: $Phase"
+}
+
+$Current = $PhaseInfo[$Phase]
 
 # ============================================================
 # Paths
 # ============================================================
 
-$SummaryFile =
-"docs\projects\overview\session-summary.md"
+$RawShellDir =
+"docs\Auditing\data\rawshell\$Phase"
 
-$Phase6Summary =
-"docs\Auditing\data\fullstack\phase6\role-permission-matrix-summary.json"
+$FullstackDir =
+"docs\Auditing\data\fullstack\$Phase"
 
-$Phase6Verify =
-"docs\Auditing\verification\phase6\verification-result.md"
+$SnrLeadDir =
+"docs\Auditing\data\snrlead\$Phase"
 
-# ============================================================
-# Defaults
-# ============================================================
-
-$RouteCount = "Unknown"
-$AuthEvidenceCount = "Unknown"
-$MatrixRows = "Unknown"
-$Roles = @()
-$VerificationStatus = "Unknown"
-
-# ============================================================
-# Phase 6 Summary
-# ============================================================
-
-if(Test-Path $Phase6Summary)
+if(!(Test-Path $RawShellDir))
 {
-    try
-    {
-        $Data =
-            Get-Content $Phase6Summary -Raw |
-            ConvertFrom-Json
+    throw "Missing evidence directory: $RawShellDir"
+}
 
-        if($Data.PSObject.Properties["RouteCount"])
-        {
-            $RouteCount = $Data.RouteCount
-        }
+New-Item -ItemType Directory -Force -Path $FullstackDir | Out-Null
+New-Item -ItemType Directory -Force -Path $SnrLeadDir | Out-Null
 
-        if($Data.PSObject.Properties["AuthorizationEvidenceCount"])
-        {
-            $AuthEvidenceCount =
-                $Data.AuthorizationEvidenceCount
-        }
+$SummaryFile =
+Join-Path $FullstackDir "summary.md"
 
-        if($Data.PSObject.Properties["MatrixRows"])
-        {
-            $MatrixRows = $Data.MatrixRows
-        }
+$VerificationFile =
+Join-Path $SnrLeadDir "verification.md"
 
-        if($Data.PSObject.Properties["Roles"])
-        {
-            $Roles = @($Data.Roles)
-        }
-    }
-    catch
-    {
-        Write-Warning "Unable to parse phase6 summary"
-    }
+# ============================================================
+# Discover Evidence
+# ============================================================
+
+$RawFiles =
+Get-ChildItem `
+    $RawShellDir `
+    -Recurse `
+    -File `
+    -ErrorAction SilentlyContinue
+
+$EvidenceCount =
+@($RawFiles).Count
+
+$EvidenceList =
+if($EvidenceCount -gt 0)
+{
+    ($RawFiles |
+        Select-Object -ExpandProperty Name |
+        Sort-Object |
+        ForEach-Object {
+            "- $_"
+        }) -join "`r`n"
+}
+else
+{
+    "- none"
 }
 
 # ============================================================
 # Verification Status
 # ============================================================
 
-if(Test-Path $Phase6Verify)
+if($EvidenceCount -gt 0)
 {
-    $VerificationStatus =
-        Get-Content $Phase6Verify -Raw |
-        Select-Object -First 1
-}
-
-# ============================================================
-# Role Text
-# ============================================================
-
-if($Roles.Count -gt 0)
-{
-    $RoleText =
-        ($Roles | ForEach-Object {
-            "- $_"
-        }) -join "`r`n"
+    $Status = "PASS"
 }
 else
 {
-    $RoleText = "- none discovered"
+    $Status = "PARTIAL"
 }
 
 # ============================================================
-# Generate Session Summary
+# Summary
 # ============================================================
 
-$Content = @"
-# Session Summary
+$ImportantFiles =
+($Current.ImportantFiles | ForEach-Object {
+    "- $_"
+}) -join "`r`n"
+
+$Summary = @"
+# Summary
 
 ## Metadata
 
-Date: $(Get-Date -Format "yyyy-MM-dd HH:mm")
+Date:
+$(Get-Date -Format "yyyy-MM-dd HH:mm")
 
-Verification Status:
-$VerificationStatus
+Phase:
+$Phase
 
----
-
-## Current Objective
-
-Step 7
-
-Frontend → Backend → Database Connection Map
+Status:
+$Status
 
 ---
 
-## Last Verified State
+## Objective
 
-Routes:
-$RouteCount
-
-Authorization Evidence:
-$AuthEvidenceCount
-
-Matrix Rows:
-$MatrixRows
-
-Roles:
-
-$RoleText
+$($Current.Objective)
 
 ---
 
-## Verified Facts
+## Evidence Source
 
-Architecture:
+$RawShellDir
 
-Frontend
-→ API Service Layer
-→ FastAPI Backend
-→ Services
-→ Models
-→ Database
+---
 
-Deployment:
+## Evidence Files
 
-Frontend:
-npm / vite
-
-Backend:
-uvicorn
-
-Container:
-docker
-
-Cloud:
-Oracle pending
+$EvidenceList
 
 ---
 
 ## Important Files
 
-frontend/src/services/api.ts
-
-backend/app/api/*.py
-
-backend/app/services/*.py
-
-backend/app/models/models.py
-
----
-
-## Current Blocker
-
-None recorded.
+$ImportantFiles
 
 ---
 
 ## Next Action
 
-Complete Step 7 connection map.
-
-Trace:
-
-Frontend Feature
-→ api.ts
-→ Backend Route
-→ Backend Service
-→ Database Model
+$($Current.NextAction)
 
 ---
 
@@ -196,36 +356,98 @@ Frontend Feature
 
 1. Read control.md
 
-2. Read this file
+2. Read verification.md
 
-3. Read latest review
+3. Continue current phase
 
-4. Continue Step 7
-
-Do not rerun completed inventories.
+4. Do not rerun completed inventories
 "@
 
-# ============================================================
-# Output
-# ============================================================
-
-$Dir =
-    Split-Path $SummaryFile -Parent
-
-if(!(Test-Path $Dir))
-{
-    New-Item `
-        -ItemType Directory `
-        -Force `
-        -Path $Dir | Out-Null
-}
-
-$Content |
-    Set-Content `
+$Summary |
+Set-Content `
     -Path $SummaryFile `
     -Encoding UTF8
 
+# ============================================================
+# Verification
+# ============================================================
+
+$Verification = @"
+# Verification
+
+## Status
+
+$Status
+
+---
+
+## Evidence Count
+
+$EvidenceCount
+
+---
+
+## Evidence Files
+
+$EvidenceList
+
+---
+
+## Findings
+
+Evidence exists for review.
+
+---
+
+## Risks
+
+Artifact contents have not been manually reviewed.
+
+PASS does not imply correctness.
+
+---
+
+## Verification Commands
+
+Get-ChildItem "$RawShellDir" -Recurse
+
+Get-Content "$SummaryFile"
+
+Get-Content "$VerificationFile"
+
+---
+
+## Recommended Next Action
+
+$($Current.NextAction)
+
+---
+
+## Stop Conditions
+
+Do not close the phase until:
+
+- evidence reviewed
+- outputs reviewed
+- findings validated
+"@
+
+$Verification |
+Set-Content `
+    -Path $VerificationFile `
+    -Encoding UTF8
+
+# ============================================================
+# Console
+# ============================================================
+
 Write-Host ""
 Write-Host "PASS"
-Write-Host "Updated:"
+
+Write-Host ""
+Write-Host "Summary:"
 Write-Host $SummaryFile
+
+Write-Host ""
+Write-Host "Verification:"
+Write-Host $VerificationFile

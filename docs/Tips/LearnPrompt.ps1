@@ -1,14 +1,78 @@
 #Requires -Version 5.1
 
+<#
+========================================================================
+LEARN EXTRACT
+
+Purpose
+-------
+Generate long-term engineering knowledge from the current phase.
+
+Input
+-----
+docs\Auditing\data\snrlead\<phase>\verification.md
+
+Output
+------
+docs\knowledge\master\learning\latest-learning-extract.md
+
+Usage
+-----
+
+.\learn-extract.ps1 -Phase phase7
+
+When To Run
+-----------
+
+✅ Phase complete
+
+✅ Major checkpoint complete
+
+✅ Major debugging session complete
+
+✅ Deployment complete
+
+✅ Refactor complete
+
+❌ Every work session
+
+❌ Every script execution
+
+Notes
+-----
+
+This script extracts:
+
+- engineering lessons
+- future rules
+- useful files
+- useful scripts
+
+This script does NOT:
+
+- update session state
+- generate verification
+- generate inventories
+
+Those belong elsewhere.
+
+========================================================================
+#>
+
+param(
+    [Parameter(Mandatory)]
+    [string]$Phase
+)
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 # =====================================================
-# Inputs
+# Paths
 # =====================================================
 
 $SessionSummary =
-"docs\projects\overview\session-summary.md"
+"docs\Auditing\data\snrlead\$Phase\verification.md"
 
 $LearningDir =
 "docs\knowledge\master\learning"
@@ -19,7 +83,7 @@ $LearningDir `
 "latest-learning-extract.md"
 
 # =====================================================
-# Directory Setup
+# Setup
 # =====================================================
 
 if(!(Test-Path $LearningDir))
@@ -31,7 +95,7 @@ if(!(Test-Path $LearningDir))
 }
 
 # =====================================================
-# Read Summary
+# Read Source
 # =====================================================
 
 $SummaryContent = ""
@@ -43,31 +107,13 @@ if(Test-Path $SessionSummary)
         $SessionSummary `
         -Raw
 }
-
-# =====================================================
-# Extract Verification Results
-# =====================================================
-
-$VerificationFiles =
-Get-ChildItem `
-    "docs\Auditing\data\snrlead" `
-    -Recurse `
-    -Filter *.md `
-    -ErrorAction SilentlyContinue |
-Sort-Object LastWriteTime -Descending
-
-$LatestReview = ""
-
-if($VerificationFiles.Count -gt 0)
+else
 {
-    $LatestReview =
-        Get-Content `
-        $VerificationFiles[0].FullName `
-        -Raw
+    throw "Missing: $SessionSummary"
 }
 
 # =====================================================
-# Extract Lessons
+# Lessons
 # =====================================================
 
 $Lessons = @()
@@ -87,7 +133,7 @@ if($SummaryContent -match "verification")
 if($SummaryContent -match "route")
 {
     $Lessons +=
-    "Route inventories should come from authoritative registration sources."
+    "Route inventories should come from authoritative sources."
 }
 
 if($SummaryContent -match "dependency")
@@ -107,7 +153,7 @@ $Lessons |
 Sort-Object -Unique
 
 # =====================================================
-# Extract Useful Files
+# Useful Files
 # =====================================================
 
 $UsefulFiles = @()
@@ -116,17 +162,9 @@ $SummaryContent `
 -split "`r?`n" |
 ForEach-Object {
 
-    if($_ -match '\.py$')
-    {
-        $UsefulFiles += $_.Trim()
-    }
-
-    if($_ -match '\.tsx$')
-    {
-        $UsefulFiles += $_.Trim()
-    }
-
-    if($_ -match '\.ts$')
+    if(
+        $_ -match '^[a-zA-Z0-9_\/\\\.\-\*]+\.(py|ts|tsx|js|jsx)$'
+    )
     {
         $UsefulFiles += $_.Trim()
     }
@@ -137,19 +175,27 @@ $UsefulFiles |
 Sort-Object -Unique
 
 # =====================================================
-# Extract Useful Scripts
+# Current Phase Scripts
 # =====================================================
 
-$Scripts =
-Get-ChildItem `
-scripts `
--Recurse `
--Filter *.ps1 `
--ErrorAction SilentlyContinue |
-Select-Object -ExpandProperty FullName
+$Scripts = @()
+
+$PhaseScriptDir =
+"scripts\audit\phases\$Phase"
+
+if(Test-Path $PhaseScriptDir)
+{
+    $Scripts =
+    Get-ChildItem `
+        $PhaseScriptDir `
+        -Filter *.ps1 `
+        -File `
+        -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty FullName
+}
 
 # =====================================================
-# Build Knowledge Output
+# Formatting
 # =====================================================
 
 $LessonText =
@@ -179,22 +225,27 @@ else
 $ScriptText =
 if($Scripts.Count -gt 0)
 {
-    ($Scripts |
-        Select-Object -First 20 |
-        ForEach-Object {
-            "- $_"
-        }) -join "`r`n"
+    ($Scripts | ForEach-Object {
+        "- $_"
+    }) -join "`r`n"
 }
 else
 {
-    "- No scripts found"
+    "- No phase scripts found"
 }
+
+# =====================================================
+# Output
+# =====================================================
 
 $Content = @"
 # Learning Extraction
 
 Generated:
 $(Get-Date)
+
+Phase:
+$Phase
 
 ---
 
@@ -208,8 +259,8 @@ $LessonText
 
 - Evidence is more important than assumptions.
 - Verification is more important than PASS messages.
-- Discover once and consume normalized artifacts.
-- Use authoritative sources before repository-wide scans.
+- Discover once and reuse normalized artifacts.
+- Prefer authoritative sources over repository scans.
 
 ---
 
@@ -225,37 +276,10 @@ $ScriptText
 
 ---
 
-## Latest Review Reference
+## Source
 
-$(
-if($VerificationFiles.Count -gt 0)
-{
-    $VerificationFiles[0].FullName
-}
-else
-{
-    "No review found"
-}
-)
-
----
-
-## Recommended Next Learning Goal
-
-Continue the active engineering step before running another learning extraction.
-
-Only run learning extraction after:
-
-- checkpoint completion
-- audit completion
-- deployment completion
-- major refactoring
-- major bug resolution
+$SessionSummary
 "@
-
-# =====================================================
-# Save
-# =====================================================
 
 $Content |
 Set-Content `

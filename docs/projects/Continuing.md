@@ -78,19 +78,27 @@ To generate future logbook entries instantly in this exact sub-50-word format, u
 
 "Summarize my 8-hour engineering and code-review session into a strict sub-50-word academic logbook entry covering: Work done, Effective rating (1-10), Self-rating reason, Knowledge/skills learned/applied, and Problems encountered/solved, people interected with."
 
+# cool canvas
 Write the complete phased implementation plan with repository structure, milestones, acceptance criteria, risks, and checklists
 
+# explanation to prompt
 Make the complete prompt more concise in markdown code form ready to copy and paste.
 
+# worlflow
+Use master prompt first for audint then summary later learn prompt.
 
-Use master prompt first for audint then later learn prompt.
+# prompt to script
+Add the powershell implementation.
+
+# prompt tweak
+Update SessionSummary.ps1 to be phase-driven
 
 # CASELOOP SENIOR ENGINEERING STANDARD
 
 Before the prompt:
 
-Continue with Step [change accordingly] 5. Inventory backend routes and authorization dependencies. 
-Step 4 is complete -- here is the verification-result <PASS
-Dependency graph generated.
-Files discovered: 11> [up to here].
+Continue with Step [change accordingly] e.g -- 5. Inventory backend routes and authorization dependencies. 
+
+StepN is complete -- here is the verification-result (i chose to upload instead -- snrld\phaseN\verification.md)
+
 Do not advance beyond this step.
