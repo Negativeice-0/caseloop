@@ -88,10 +88,11 @@ Make the complete prompt more concise in markdown code form ready to copy and pa
 Use master prompt first for audint then summary later learn prompt.
 
 # prompt to script
-Add the powershell implementation.
+Add the powershell implementation/ provide the complete .ps1 script
 
 # prompt tweak
 Update SessionSummary.ps1 to be phase-driven
+- Then after a few edit updates: rewrite the complete prompt cleanly
 
 # CASELOOP SENIOR ENGINEERING STANDARD
 
