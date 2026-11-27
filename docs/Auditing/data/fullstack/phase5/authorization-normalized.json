@@ -1,0 +1,832 @@
+[
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  9,
+        "Evidence":  "from app.models.models import AuthSession, User"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  17,
+        "Evidence":  "request: Request, db: Session = Depends(get_db)"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  18,
+        "Evidence":  ") -\u003e AuthSession:"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  22,
+        "Evidence":  "status_code=status.HTTP_401_UNAUTHORIZED, detail=\"Sign in required.\""
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  25,
+        "Evidence":  "db.query(AuthSession)"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  27,
+        "Evidence":  "AuthSession.token_hash == hash_session_token(token),"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  28,
+        "Evidence":  "AuthSession.revoked_at.is_(None),"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  29,
+        "Evidence":  "AuthSession.expires_at \u003e int(time.time()),"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  35,
+        "Evidence":  "status_code=status.HTTP_401_UNAUTHORIZED,"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  42,
+        "Evidence":  "session: AuthSession = Depends(get_current_session),"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  43,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  48,
+        "Evidence":  "status_code=status.HTTP_401_UNAUTHORIZED,"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  54,
+        "Evidence":  "def require_roles(*roles: str) -\u003e Callable:"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  55,
+        "Evidence":  "def role_dependency(user: User = Depends(get_current_user)) -\u003e User:"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  56,
+        "Evidence":  "if user.role not in roles:"
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  59,
+        "Evidence":  "detail=\"Your account does not have permission for this action.\","
+    },
+    {
+        "File":  "backend\\app\\core\\auth.py",
+        "LineNumber":  63,
+        "Evidence":  "return role_dependency"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  9,
+        "Evidence":  "from app.core.auth import require_roles"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  15,
+        "Evidence":  "AuthSession,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  21,
+        "Evidence":  "AdminUserCreate,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  22,
+        "Evidence":  "AdminUserUpdate,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  31,
+        "Evidence":  "prefix=\"/api/admin\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  32,
+        "Evidence":  "tags=[\"Administration\"],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  33,
+        "Evidence":  "dependencies=[Depends(require_roles(\"admin\"))],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  37,
+        "Evidence":  "def _record_admin_action(db: Session, user_id: int, action: str, details: str) -\u003e None:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  58,
+        "Evidence":  "def list_recent_audit_events(limit: int = 50, db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  80,
+        "Evidence":  "def list_users(db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  86,
+        "Evidence":  "payload: AdminUserCreate,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  87,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  88,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  104,
+        "Evidence":  "role=payload.role,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  110,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  111,
+        "Evidence":  "db, admin.id, \"USER_CREATED\", f\"Created {payload.role} account {email}.\""
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  132,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  133,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  138,
+        "Evidence":  "if user.id == admin.id and not payload.is_active:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  140,
+        "Evidence":  "if user.role == \"admin\" and user.is_active and not payload.is_active:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  141,
+        "Evidence":  "other_admins = db.query(User).filter("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  142,
+        "Evidence":  "User.role == \"admin\", User.is_active == 1, User.id != user.id"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  144,
+        "Evidence":  "if other_admins == 0:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  146,
+        "Evidence":  "status_code=400, detail=\"Create another administrator before deactivating this account.\""
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  150,
+        "Evidence":  "db.query(AuthSession).filter("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  151,
+        "Evidence":  "AuthSession.user_id == user.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  152,
+        "Evidence":  "AuthSession.revoked_at.is_(None),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  153,
+        "Evidence":  ").update({AuthSession.revoked_at: int(time.time())})"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  154,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  156,
+        "Evidence":  "admin.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  168,
+        "Evidence":  "payload: AdminUserUpdate,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  169,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  170,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  175,
+        "Evidence":  "if user.id == admin.id and payload.role != \"admin\":"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  176,
+        "Evidence":  "raise HTTPException(status_code=400, detail=\"You cannot remove your own administrator role.\")"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  177,
+        "Evidence":  "if user.role == \"admin\" and user.is_active and payload.role != \"admin\":"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  178,
+        "Evidence":  "other_admins = db.query(User).filter("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  179,
+        "Evidence":  "User.role == \"admin\", User.is_active == 1, User.id != user.id"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  181,
+        "Evidence":  "if other_admins == 0:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  184,
+        "Evidence":  "detail=\"Create another administrator before changing this role.\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  187,
+        "Evidence":  "user.role = payload.role"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  188,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  190,
+        "Evidence":  "admin.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  192,
+        "Evidence":  "f\"Updated {user.email} to role {user.role}.\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  202,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  203,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  208,
+        "Evidence":  "if user.id == admin.id:"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  215,
+        "Evidence":  "db.query(AuthSession).filter("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  216,
+        "Evidence":  "AuthSession.user_id == user.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  217,
+        "Evidence":  "AuthSession.revoked_at.is_(None),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  218,
+        "Evidence":  ").update({AuthSession.revoked_at: int(time.time())})"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  219,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  220,
+        "Evidence":  "db, admin.id, \"USER_PASSWORD_RESET\", f\"Reset password for {user.email}.\""
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  227,
+        "Evidence":  "def list_team_memberships(db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  240,
+        "Evidence":  "member_role=membership.member_role,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  257,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  258,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  272,
+        "Evidence":  "team_id=team_id, user_id=user.id, member_role=payload.member_role"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  275,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  277,
+        "Evidence":  "admin.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  279,
+        "Evidence":  "f\"Added {user.email} to {team.name} as {payload.member_role}.\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  287,
+        "Evidence":  "member_role=membership.member_role,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  297,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  298,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  307,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  309,
+        "Evidence":  "admin.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  319,
+        "Evidence":  "def update_team_member_role("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  322,
+        "Evidence":  "admin: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  323,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  330,
+        "Evidence":  "membership.member_role = payload.member_role"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  333,
+        "Evidence":  "_record_admin_action("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  335,
+        "Evidence":  "admin.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  336,
+        "Evidence":  "\"TEAM_MEMBER_ROLE_UPDATED\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  337,
+        "Evidence":  "f\"Set {user.email if user else membership.user_id} as {membership.member_role} \""
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\admin.py",
+        "LineNumber":  346,
+        "Evidence":  "member_role=membership.member_role,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  5,
+        "Evidence":  "from app.core.auth import get_current_user, require_roles"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  34,
+        "Evidence":  "dependencies=[Depends(get_current_user)],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  40,
+        "Evidence":  "_: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  41,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  47,
+        "Evidence":  "current_user: User = Depends(get_current_user),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  48,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  50,
+        "Evidence":  "if current_user.role == \"responder\":"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  65,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  66,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  93,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  94,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  118,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  119,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  128,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  129,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  139,
+        "Evidence":  "current_user: User = Depends(get_current_user),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  140,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  143,
+        "Evidence":  "if current_user.role == \"responder\":"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  153,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\", \"responder\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  154,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  162,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\assignments.py",
+        "LineNumber":  163,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  8,
+        "Evidence":  "from app.core.auth import ("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  17,
+        "Evidence":  "from app.models.models import AuditLog, AuthSession, User, UserRole"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  19,
+        "Evidence":  "AuthCredentials,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  26,
+        "Evidence":  "router = APIRouter(prefix=\"/api/auth\", tags=[\"Authentication\"])"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  57,
+        "Evidence":  "AuthSession("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  72,
+        "Evidence":  "payload: AuthCredentials,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  74,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  86,
+        "Evidence":  "if payload.audience == \"admin\" and user.role != \"admin\":"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  89,
+        "Evidence":  "detail=\"This sign-in page is for administrator accounts.\","
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  99,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  114,
+        "Evidence":  "role=UserRole.RESPONDER,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  140,
+        "Evidence":  "user: User = Depends(get_current_user),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  141,
+        "Evidence":  "session: AuthSession = Depends(get_current_session),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  153,
+        "Evidence":  "session: AuthSession = Depends(get_current_session),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  154,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  171,
+        "Evidence":  "user: User = Depends(get_current_user),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  172,
+        "Evidence":  "current_session: AuthSession = Depends(get_current_session),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  173,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  183,
+        "Evidence":  "db.query(AuthSession).filter("
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  184,
+        "Evidence":  "AuthSession.user_id == user.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  185,
+        "Evidence":  "AuthSession.revoked_at.is_(None),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  186,
+        "Evidence":  "AuthSession.id != current_session.id,"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\auth.py",
+        "LineNumber":  187,
+        "Evidence":  ").update({AuthSession.revoked_at: int(time.time())}, synchronize_session=False)"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  8,
+        "Evidence":  "from app.core.auth import get_current_user, require_roles"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  23,
+        "Evidence":  "dependencies=[Depends(get_current_user)],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  30,
+        "Evidence":  "_: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  31,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  63,
+        "Evidence":  "_: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  64,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  76,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  77,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  171,
+        "Evidence":  "current_user: User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\intakes.py",
+        "LineNumber":  172,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\reports.py",
+        "LineNumber":  12,
+        "Evidence":  "from app.core.auth import require_roles"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\reports.py",
+        "LineNumber":  27,
+        "Evidence":  "dependencies=[Depends(require_roles(\"admin\", \"coordinator\"))],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\reports.py",
+        "LineNumber":  306,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\reports.py",
+        "LineNumber":  319,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\reports.py",
+        "LineNumber":  367,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  11,
+        "Evidence":  "from app.core.auth import get_current_user, require_roles"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  18,
+        "Evidence":  "dependencies=[Depends(get_current_user)],"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  24,
+        "Evidence":  "current_user: models.User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  25,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  61,
+        "Evidence":  "def list_responses(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  70,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  105,
+        "Evidence":  "def get_response(response_id: int, db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  115,
+        "Evidence":  "current_user: models.User = Depends(require_roles(\"admin\", \"coordinator\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  116,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  149,
+        "Evidence":  "current_user: models.User = Depends(require_roles(\"admin\")),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  150,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\responses.py",
+        "LineNumber":  190,
+        "Evidence":  "def get_response_timeline(response_id: int, skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\webhooks.py",
+        "LineNumber":  80,
+        "Evidence":  "db: Session = Depends(get_db),"
+    },
+    {
+        "File":  "C:\\Users\\Admin\\Documents\\caseloop\\backend\\app\\api\\__init__.py",
+        "LineNumber":  1,
+        "Evidence":  "from . import admin, responses"
+    }
+]

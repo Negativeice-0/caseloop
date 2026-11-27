@@ -1,4 +1,4 @@
-﻿# scripts/run_audit.ps1
+﻿# .\scripts\auditing\phase1\run_audit.ps1
 
 $ErrorActionPreference = "Stop"
 
