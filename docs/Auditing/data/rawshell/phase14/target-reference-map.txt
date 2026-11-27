@@ -1,0 +1,65 @@
+CANDIDATE: react-router-dom | matching lines: 4
+  frontend\package.json:15: "react-router-dom": "^7.18.5"
+  frontend\package-lock.json:14: "react-router-dom": "^7.18.5"
+  frontend\package-lock.json:2350: "node_modules/react-router-dom": {
+  frontend\package-lock.json:2352: "resolved": "https://registry.npmmirror.com/react-router-dom/-/react-router-dom-7.18.5.tgz",
+CANDIDATE: IntakeReview | matching lines: 5
+  frontend\src\App.tsx:8: import { IntakeReview, ReportsView, TimelineView } from './features/workflow/WorkflowViews';
+  frontend\src\App.tsx:155: {activeTab === 'intake' && canCoordinate && <IntakeReview />}
+  frontend\src\features\admin\AdminControl.tsx:5: import { IntakeReview, ReportsView, TimelineView } from '../workflow/WorkflowViews';
+  frontend\src\features\admin\AdminControl.tsx:238: {section === 'intake' && <IntakeReview />}
+  frontend\src\features\workflow\WorkflowViews.tsx:21: export function IntakeReview() {
+CANDIDATE: TimelineView | matching lines: 5
+  frontend\src\App.tsx:8: import { IntakeReview, ReportsView, TimelineView } from './features/workflow/WorkflowViews';
+  frontend\src\App.tsx:156: {activeTab === 'timeline' && <TimelineView />}
+  frontend\src\features\admin\AdminControl.tsx:5: import { IntakeReview, ReportsView, TimelineView } from '../workflow/WorkflowViews';
+  frontend\src\features\admin\AdminControl.tsx:239: {section === 'timeline' && <TimelineView />}
+  frontend\src\features\workflow\WorkflowViews.tsx:318: export function TimelineView() {
+CANDIDATE: ReportsView | matching lines: 5
+  frontend\src\App.tsx:8: import { IntakeReview, ReportsView, TimelineView } from './features/workflow/WorkflowViews';
+  frontend\src\App.tsx:157: {activeTab === 'reports' && canCoordinate && <ReportsView />}
+  frontend\src\features\admin\AdminControl.tsx:5: import { IntakeReview, ReportsView, TimelineView } from '../workflow/WorkflowViews';
+  frontend\src\features\admin\AdminControl.tsx:240: {section === 'reports' && <ReportsView />}
+  frontend\src\features\workflow\WorkflowViews.tsx:391: export function ReportsView() {
+CANDIDATE: ResponseRegister | matching lines: 5
+  frontend\src\App.tsx:7: import ResponseRegister from './features/responses/ResponseRegister';
+  frontend\src\App.tsx:153: {activeTab === 'responses' && <ResponseRegister userRole={currentUser.role} />}
+  frontend\src\features\admin\AdminControl.tsx:3: import ResponseRegister from '../responses/ResponseRegister';
+  frontend\src\features\admin\AdminControl.tsx:236: {section === 'responses' && <ResponseRegister userRole="admin" mode="admin" />}
+  frontend\src\features\responses\ResponseRegister.tsx:16: export default function ResponseRegister({ userRole, mode = 'read-only' }: ResponseRegisterProps) {
+CANDIDATE: AssignmentsManager | matching lines: 5
+  frontend\src\App.tsx:5: import { AssignmentsManager } from './features/assignments/AssignmentsManager';
+  frontend\src\App.tsx:154: {activeTab === 'assignments' && <AssignmentsManager userRole={currentUser.role} />}
+  frontend\src\features\admin\AdminControl.tsx:4: import { AssignmentsManager } from '../assignments/AssignmentsManager';
+  frontend\src\features\admin\AdminControl.tsx:237: {section === 'assignments' && <AssignmentsManager userRole="admin" />}
+  frontend\src\features\assignments\AssignmentsManager.tsx:9: export const AssignmentsManager: React.FC<AssignmentsManagerProps> = ({ userRole }) => {
+CANDIDATE: AdminControl | matching lines: 3
+  frontend\src\App.tsx:3: import { AdminControl } from './features/admin/AdminControl';
+  frontend\src\App.tsx:162: <AdminControl currentUser={currentUser} />
+  frontend\src\features\admin\AdminControl.tsx:36: export const AdminControl: React.FC<AdminControlProps> = ({ currentUser }) => {
+CANDIDATE: UserProfile | matching lines: 3
+  frontend\src\App.tsx:6: import { PasswordChangeForm, UserProfile } from './features/profile/UserProfile';
+  frontend\src\App.tsx:159: <UserProfile currentUser={currentUser} onPasswordChanged={setCurrentUser} />
+  frontend\src\features\profile\UserProfile.tsx:104: export function UserProfile({ currentUser, onPasswordChanged }: UserProfileProps) {
+CANDIDATE: MainLayout | matching lines: 4
+  frontend\src\App.tsx:9: import { MainLayout, TabType } from './layouts/MainLayout';
+  frontend\src\App.tsx:117: <MainLayout
+  frontend\src\App.tsx:164: </MainLayout>
+  frontend\src\layouts\MainLayout.tsx:35: export const MainLayout: React.FC<MainLayoutProps> = ({
+CANDIDATE: getIntakes | matching lines: 6
+  frontend\src\features\admin\AdminControl.tsx:15: getIntakes,
+  frontend\src\features\admin\AdminControl.tsx:71: getIntakes(),
+  frontend\src\features\workflow\WorkflowViews.tsx:6: getIntakes,
+  frontend\src\features\workflow\WorkflowViews.tsx:22: const [intakes, setIntakes] = useState<Awaited<ReturnType<typeof getIntakes>>>([]);
+  frontend\src\features\workflow\WorkflowViews.tsx:46: const data = await getIntakes();
+  frontend\src\services\api.ts:491: export async function getIntakes(): Promise<IntakeSubmission[]> {
+CANDIDATE: getTimelineFeed | matching lines: 3
+  frontend\src\features\workflow\WorkflowViews.tsx:8: getTimelineFeed,
+  frontend\src\features\workflow\WorkflowViews.tsx:336: getTimelineFeed(selectedId ?? undefined)
+  frontend\src\services\api.ts:529: export async function getTimelineFeed(responseId?: number): Promise<TimelineFeedEvent[]> {
+CANDIDATE: getReportPreview | matching lines: 5
+  frontend\src\features\workflow\WorkflowViews.tsx:7: getReportPreview,
+  frontend\src\features\workflow\WorkflowViews.tsx:410: Promise.all([getTeams(), getReportPreview()])
+  frontend\src\features\workflow\WorkflowViews.tsx:434: const report = await getReportPreview(nextFilters);
+  frontend\src\features\workflow\WorkflowViews.tsx:453: const report = await getReportPreview({ template: 'operational' });
+  frontend\src\services\api.ts:468: export async function getReportPreview(filters: ReportOptions = {}): Promise<ReportPreview> {

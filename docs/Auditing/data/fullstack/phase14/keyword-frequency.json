@@ -1,0 +1,102 @@
+﻿[
+    {
+        "keyword":  "frontend",
+        "count":  59
+    },
+    {
+        "keyword":  "features",
+        "count":  35
+    },
+    {
+        "keyword":  "workflowviews",
+        "count":  18
+    },
+    {
+        "keyword":  "admincontrol",
+        "count":  18
+    },
+    {
+        "keyword":  "workflow",
+        "count":  18
+    },
+    {
+        "keyword":  "admin",
+        "count":  17
+    },
+    {
+        "keyword":  "import",
+        "count":  13
+    },
+    {
+        "keyword":  "candidate",
+        "count":  12
+    },
+    {
+        "keyword":  "matching",
+        "count":  12
+    },
+    {
+        "keyword":  "lines",
+        "count":  12
+    },
+    {
+        "keyword":  "export",
+        "count":  11
+    },
+    {
+        "keyword":  "intakereview",
+        "count":  10
+    },
+    {
+        "keyword":  "timelineview",
+        "count":  10
+    },
+    {
+        "keyword":  "reportsview",
+        "count":  10
+    },
+    {
+        "keyword":  "react-router-dom",
+        "count":  9
+    },
+    {
+        "keyword":  "responseregister",
+        "count":  9
+    },
+    {
+        "keyword":  "assignmentsmanager",
+        "count":  9
+    },
+    {
+        "keyword":  "json",
+        "count":  8
+    },
+    {
+        "keyword":  "currentuser",
+        "count":  8
+    },
+    {
+        "keyword":  "function",
+        "count":  8
+    },
+    {
+        "keyword":  "const",
+        "count":  7
+    },
+    {
+        "keyword":  "mainlayout",
+        "count":  7
+    },
+    {
+        "keyword":  "getintakes",
+        "count":  7
+    },
+    {
+        "keyword":  "userprofile",
+        "count":  6
+    },
+    {
+        "keyword":  "package-lock",
+        "count":  6
+    }
+]

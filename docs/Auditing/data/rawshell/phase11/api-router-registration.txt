@@ -1,0 +1,7 @@
+backend\app\main.py:21: app.include_router(admin.router)
+backend\app\main.py:22: app.include_router(auth.router)
+backend\app\main.py:23: app.include_router(responses.router)
+backend\app\main.py:24: app.include_router(assignments.router)
+backend\app\main.py:25: app.include_router(intakes.router)
+backend\app\main.py:26: app.include_router(reports.router)
+backend\app\main.py:27: app.include_router(webhooks.router)

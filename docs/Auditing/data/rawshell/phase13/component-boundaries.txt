@@ -1,0 +1,17 @@
+Exported component and local orchestration declarations:
+frontend\src\App.tsx:17: export default function App() {
+frontend\src\App.tsx:34: const checkStatus = async () => {
+frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+frontend\src\layouts\MainLayout.tsx:25: interface MainLayoutProps {
+frontend\src\layouts\MainLayout.tsx:35: export const MainLayout: React.FC<MainLayoutProps> = ({
+frontend\src\features\workflow\WorkflowViews.tsx:21: export function IntakeReview() {
+frontend\src\features\workflow\WorkflowViews.tsx:318: export function TimelineView() {
+frontend\src\features\workflow\WorkflowViews.tsx:391: export function ReportsView() {
+frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+frontend\src\features\admin\AdminControl.tsx:32: interface AdminControlProps {
+frontend\src\features\admin\AdminControl.tsx:36: export const AdminControl: React.FC<AdminControlProps> = ({ currentUser }) => {
+frontend\src\features\assignments\AssignmentsManager.tsx:5: interface AssignmentsManagerProps {
+frontend\src\features\assignments\AssignmentsManager.tsx:9: export const AssignmentsManager: React.FC<AssignmentsManagerProps> = ({ userRole }) => {
+workflow boundary | 21: export function IntakeReview() {
+workflow boundary | 318: export function TimelineView() {
+workflow boundary | 391: export function ReportsView() {

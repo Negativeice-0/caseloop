@@ -1,0 +1,93 @@
+Frontend tab-token references (first-party source only):
+TAB: responses | source match count: 14
+  frontend\src\App.tsx:21: const [activeTab, setActiveTab] = useState<TabType>(isAdminEntry ? 'admin' : 'responses');
+  frontend\src\App.tsx:62: setActiveTab('responses');
+  frontend\src\App.tsx:74: setActiveTab('responses');
+  frontend\src\App.tsx:128: {activeTab === 'responses' && 'Operational Response Register'}
+  frontend\src\App.tsx:153: {activeTab === 'responses' && <ResponseRegister userRole={currentUser.role} />}
+  frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+  frontend\src\features\admin\AdminControl.tsx:157: ['responses', 'Response records'],
+  frontend\src\features\admin\AdminControl.tsx:236: {section === 'responses' && <ResponseRegister userRole="admin" mode="admin" />}
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:45: const homeTab: TabType = currentUser.role === 'admin' ? 'admin' : 'responses';
+  frontend\src\layouts\MainLayout.tsx:91: onClick={() => setActiveTab('responses')}
+  frontend\src\layouts\MainLayout.tsx:93: activeTab === 'responses' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:197: onClick={() => selectTab('responses')}
+  frontend\src\layouts\MainLayout.tsx:199: activeTab === 'responses' ? 'bg-red-600/30 text-red-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+TAB: assignments | source match count: 10
+  frontend\src\App.tsx:129: {activeTab === 'assignments' && 'Team Assignment Management'}
+  frontend\src\App.tsx:154: {activeTab === 'assignments' && <AssignmentsManager userRole={currentUser.role} />}
+  frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+  frontend\src\features\admin\AdminControl.tsx:158: ['assignments', 'Teams & assignments'],
+  frontend\src\features\admin\AdminControl.tsx:237: {section === 'assignments' && <AssignmentsManager userRole="admin" />}
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:100: onClick={() => setActiveTab('assignments')}
+  frontend\src\layouts\MainLayout.tsx:102: activeTab === 'assignments' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:207: onClick={() => selectTab('assignments')}
+  frontend\src\layouts\MainLayout.tsx:209: activeTab === 'assignments' ? 'bg-red-600/30 text-red-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+TAB: timeline | source match count: 10
+  frontend\src\App.tsx:130: {activeTab === 'timeline' && 'Chronological Operational Timeline'}
+  frontend\src\App.tsx:156: {activeTab === 'timeline' && <TimelineView />}
+  frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+  frontend\src\features\admin\AdminControl.tsx:160: ['timeline', 'Operational timeline'],
+  frontend\src\features\admin\AdminControl.tsx:239: {section === 'timeline' && <TimelineView />}
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:109: onClick={() => setActiveTab('timeline')}
+  frontend\src\layouts\MainLayout.tsx:111: activeTab === 'timeline' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:217: onClick={() => selectTab('timeline')}
+  frontend\src\layouts\MainLayout.tsx:219: activeTab === 'timeline' ? 'bg-red-600/30 text-red-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+TAB: intake | source match count: 11
+  frontend\src\App.tsx:61: if (!canCoordinate && ['intake', 'reports', 'admin'].includes(activeTab)) {
+  frontend\src\App.tsx:131: {activeTab === 'intake' && 'Incoming Information Review'}
+  frontend\src\App.tsx:155: {activeTab === 'intake' && canCoordinate && <IntakeReview />}
+  frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+  frontend\src\features\admin\AdminControl.tsx:159: ['intake', `Intake review${pendingCount ? ` (${pendingCount})` : ''}`],
+  frontend\src\features\admin\AdminControl.tsx:238: {section === 'intake' && <IntakeReview />}
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:120: onClick={() => setActiveTab('intake')}
+  frontend\src\layouts\MainLayout.tsx:122: activeTab === 'intake' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:231: moreOpen || ['intake', 'reports', 'profile', 'admin'].includes(activeTab)
+  frontend\src\layouts\MainLayout.tsx:244: <button onClick={() => selectTab('intake')} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100">
+TAB: reports | source match count: 11
+  frontend\src\App.tsx:61: if (!canCoordinate && ['intake', 'reports', 'admin'].includes(activeTab)) {
+  frontend\src\App.tsx:132: {activeTab === 'reports' && 'Operational Analysis & Reports'}
+  frontend\src\App.tsx:157: {activeTab === 'reports' && canCoordinate && <ReportsView />}
+  frontend\src\features\admin\AdminControl.tsx:30: type AdminSection = 'overview' | 'responses' | 'assignments' | 'intake' | 'timeline' | 'reports' | 'people';
+  frontend\src\features\admin\AdminControl.tsx:161: ['reports', 'Reports'],
+  frontend\src\features\admin\AdminControl.tsx:240: {section === 'reports' && <ReportsView />}
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:129: onClick={() => setActiveTab('reports')}
+  frontend\src\layouts\MainLayout.tsx:131: activeTab === 'reports' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:231: moreOpen || ['intake', 'reports', 'profile', 'admin'].includes(activeTab)
+  frontend\src\layouts\MainLayout.tsx:247: <button onClick={() => selectTab('reports')} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100">
+TAB: admin | source match count: 22
+  frontend\src\App.tsx:21: const [activeTab, setActiveTab] = useState<TabType>(isAdminEntry ? 'admin' : 'responses');
+  frontend\src\App.tsx:61: if (!canCoordinate && ['intake', 'reports', 'admin'].includes(activeTab)) {
+  frontend\src\App.tsx:83: if (isAdminEntry && currentUser.role !== 'admin') {
+  frontend\src\App.tsx:133: {activeTab === 'admin' && 'Administration & Team Readiness'}
+  frontend\src\App.tsx:161: {activeTab === 'admin' && currentUser.role === 'admin' && (
+  frontend\src\features\assignments\AssignmentsManager.tsx:6: userRole: 'admin' | 'coordinator' | 'responder';
+  frontend\src\features\assignments\AssignmentsManager.tsx:227: {userRole === 'admin' && asn.status === 'Draft' && (
+  frontend\src\features\auth\AuthGateway.tsx:28: ...(screen === 'admin-login' ? { audience: 'admin' as const } : {}),
+  frontend\src\features\responses\ResponseRegister.tsx:12: userRole: 'admin' | 'coordinator' | 'responder';
+  frontend\src\features\responses\ResponseRegister.tsx:13: mode?: 'read-only' | 'admin';
+  frontend\src\features\responses\ResponseRegister.tsx:17: const canManage = mode === 'admin' && userRole !== 'responder';
+  frontend\src\features\responses\ResponseRegister.tsx:18: const canDelete = mode === 'admin' && userRole === 'admin';
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:45: const homeTab: TabType = currentUser.role === 'admin' ? 'admin' : 'responses';
+  frontend\src\layouts\MainLayout.tsx:149: {currentUser.role === 'admin' && (
+  frontend\src\layouts\MainLayout.tsx:151: onClick={() => setActiveTab('admin')}
+  frontend\src\layouts\MainLayout.tsx:153: activeTab === 'admin' ? 'bg-slate-900 text-white shadow-md shadow-slate-900/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:231: moreOpen || ['intake', 'reports', 'profile', 'admin'].includes(activeTab)
+  frontend\src\layouts\MainLayout.tsx:259: {currentUser.role === 'admin' && (
+  frontend\src\layouts\MainLayout.tsx:260: <button onClick={() => selectTab('admin')} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100">
+  frontend\src\services\api.ts:52: role: 'admin' | 'coordinator' | 'responder';
+  frontend\src\services\api.ts:66: audience?: 'workspace' | 'admin';
+TAB: profile | source match count: 7
+  frontend\src\App.tsx:134: {activeTab === 'profile' && 'Account & Security'}
+  frontend\src\App.tsx:158: {activeTab === 'profile' && (
+  frontend\src\layouts\MainLayout.tsx:23: export type TabType = 'responses' | 'assignments' | 'timeline' | 'intake' | 'reports' | 'admin' | 'profile';
+  frontend\src\layouts\MainLayout.tsx:141: onClick={() => setActiveTab('profile')}
+  frontend\src\layouts\MainLayout.tsx:143: activeTab === 'profile' ? 'bg-red-600 text-white shadow-md shadow-red-600/25' : 'text-slate-600 hover:bg-slate-100'
+  frontend\src\layouts\MainLayout.tsx:231: moreOpen || ['intake', 'reports', 'profile', 'admin'].includes(activeTab)
+  frontend\src\layouts\MainLayout.tsx:256: <button onClick={() => selectTab('profile')} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100">

@@ -1,0 +1,50 @@
+Documentation review evidence (remote URLs and secrets omitted)
+
+Git remote names:
+origin
+
+README hosting statements:
+README.md:75: For a phone preview on the same trusted Wi-Fi, see the [same-Wi-Fi instructions](docs/deployment/DEPLOYMENT.md#same-wi-fi-phone-preview-not-public-hosting). This is not a public deployment.
+README.md:93: Meta's test number and recipient are the correct first integration test. A local-only callback is not reachable by Meta; any temporary HTTPS tunnel must be explicitly opened, limited to synthetic test traffic, and shut down after testing. No public callback or live WhatsApp test has been verified in this workspace.
+README.md:99: An `origin` Git remote is configured, but no public deployment or live WhatsApp connection has been verified in this workspace. A possible synthetic demo stack is a static frontend host, a container-capable API host, and managed PostgreSQL; free-tier availability and limits change and must be confirmed at deployment time. Do not put real humanitarian or personal data on an unapproved free tier.
+README.md:101: Before any public or organizational deployment: apply and test schema migrations on a restored copy; add login abuse protection and operational monitoring; configure HTTPS, secure cookies, exact CORS origins, secret management, backups and restore drills; define data retention and access procedures; and obtain the organization's approval. For cookie-based auth across separate hosts, use same-site custom subdomains and explicitly allow the frontend origin.
+README.md:107: Keep the human-reviewed flow: original unstructured text → coordinator review and correction → approved response board → team assignment → accountable timeline → traceable report. Deterministic reporting is the default; optional AI may suggest fields but must never silently approve or dispatch. WhatsApp is an intake channel, not an unrestricted group-history feed.
+
+Deployment guide hosting statements:
+docs/deployment/DEPLOYMENT.md:42: ## Same-Wi-Fi phone preview (not public hosting)
+docs/deployment/DEPLOYMENT.md:52: Replace `<LAN_IP>` below with that address. From the project root, bind only the API port to the LAN interface and allow the exact frontend origin:
+docs/deployment/DEPLOYMENT.md:56: $env:CORS_ORIGINS = "http://<LAN_IP>:5174,http://localhost:5173,http://127.0.0.1:5173"
+docs/deployment/DEPLOYMENT.md:108: For the least complicated internet-accessible demo of this stack, use **Render Static Site + Render Python Web Service + Neon Free Postgres**. CaseLoop's Docker Compose PostgreSQL remains the easy local development setup; the hosted API connects to Neon instead. Render's Python runtime can install the existing requirements and use Python 3.11, so a Docker image is not required for the first deployment. Render does not deploy this local multi-container Compose stack as-is; self-hosting PostgreSQL in a Docker container on a small VPS adds Linux administration, TLS, backups, firewall, and update work. Keep the frontend and API on their Render `onrender.com` hostnames: they are different origins for CORS, but share a site for this app's `SameSite=Lax` session cookies. Avoid splitting the free demo across unrelated domains until cookie behavior is deliberately redesigned and tested.
+docs/deployment/DEPLOYMENT.md:118: 1. Verify that the configured `origin` points to the intended private GitHub repository, then push only after checking for secrets and local data. Provider access is required to create or configure hosting resources.
+docs/deployment/DEPLOYMENT.md:121: 4. Configure the API service environment: `APP_ENV=production`, `COOKIE_SECURE=true`, `DATABASE_URL` set to the Neon PostgreSQL URL using the `postgresql+psycopg` driver and `sslmode=require`, and `CORS_ORIGINS` set to the exact Render static-site origin (no wildcard). Add `WHATSAPP_VERIFY_TOKEN` and `WHATSAPP_APP_SECRET` only when setting up the Meta test webhook.
+docs/deployment/DEPLOYMENT.md:132: - Use HTTPS end-to-end, `COOKIE_SECURE=true`, exact frontend CORS origins, and secret-manager values. Cookie auth across frontend/API hosts requires compatible same-site domains.
+docs/deployment/DEPLOYMENT.md:138: An `origin` Git remote is configured, but no public host, public DNS name, or live WhatsApp connection has been verified in this workspace. Docker Compose is local only.
+
+Compose services:
+docker-compose.yml:2: db:
+docker-compose.yml:19: api:
+
+Backend router registrations:
+backend/app/main.py:21: app.include_router(admin.router)
+backend/app/main.py:22: app.include_router(auth.router)
+backend/app/main.py:23: app.include_router(responses.router)
+backend/app/main.py:24: app.include_router(assignments.router)
+backend/app/main.py:25: app.include_router(intakes.router)
+backend/app/main.py:26: app.include_router(reports.router)
+backend/app/main.py:27: app.include_router(webhooks.router)
+
+WhatsApp webhook implementation markers:
+backend/app/api/webhooks.py:15: MAX_MESSAGE_CHARS = 10_000
+backend/app/api/webhooks.py:31: or not hmac.compare_digest(verify_token, settings.WHATSAPP_VERIFY_TOKEN)
+backend/app/api/webhooks.py:71: and len(body) <= MAX_MESSAGE_CHARS
+backend/app/api/webhooks.py:90: signature = request.headers.get("X-Hub-Signature-256", "")
+backend/app/api/webhooks.py:96: if not hmac.compare_digest(signature, expected_signature):
+backend/app/api/webhooks.py:114: source_channel="whatsapp",
+backend/app/api/webhooks.py:117: status="pending",
+
+Webhook test names:
+backend/tests/test_assignments.py:744: def test_meta_webhook_verification_and_signed_intake_are_draft_only(monkeypatch):
+backend/tests/test_assignments.py:838: def test_meta_webhook_rejects_invalid_signatures_and_malformed_payloads(monkeypatch):
+
+frontend/Dockerfile exists: False
+backend/Dockerfile exists: True

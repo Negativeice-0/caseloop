@@ -53,9 +53,9 @@ Set-Location backend
 .\venv\Scripts\python.exe -m app.create_admin
 ```
 
-The CLI prompts for the administrator's email, name, and a password of at least 12 characters. It can also reset/promote an existing account by email. The landing page's **Launch Dispatch Portal** button opens public registration; new accounts are limited to the responder role. Coordinator and administrator accounts remain provisioned by an administrator. There is no default shared password.
+The CLI prompts for the administrator's email, name, and a password of at least 12 characters. It can also reset/promote an existing account by email. The landing page's **Launch Dispatch Portal** button opens public registration; new accounts are limited to the responder role. Coordinator and administrator accounts remain provisioned by an administrator. The CLI setup does not require default credentials.
 
-To add the bundled synthetic response examples after creating an administrator, run `.\venv\Scripts\python.exe -m app.seed` from `backend`. The seeder refuses to create any placeholder/default account. In Docker, use `docker compose exec api python -m app.seed`.
+Do not run `.\venv\Scripts\python.exe -m app.seed` or `docker compose exec api python -m app.seed`. The current seeder creates built-in default accounts, contrary to its existing guard test, which currently fails. Use the UI or isolated test fixtures for synthetic data until the seeder is corrected and re-verified.
 
 ## Local PostgreSQL with Docker
 
@@ -90,13 +90,13 @@ npm.cmd run build
 
 The code supports Meta's webhook verification challenge and `X-Hub-Signature-256` validation. To receive a real test message, configure a Meta developer app with the WhatsApp product and its provided test number, add an approved test recipient, configure a publicly reachable HTTPS callback ending in `/api/webhooks/whatsapp`, set the `messages` webhook field, and set `WHATSAPP_VERIFY_TOKEN` plus `WHATSAPP_APP_SECRET` as environment secrets. Never commit secrets or use real beneficiary information for setup tests.
 
-Meta's test number and recipient are the correct first integration test. A local-only callback is not reachable by Meta; any temporary HTTPS tunnel must be explicitly opened, limited to synthetic test traffic, and shut down after testing. No Meta credentials, public callback, or live WhatsApp test are currently configured.
+Meta's test number and recipient are the correct first integration test. A local-only callback is not reachable by Meta; any temporary HTTPS tunnel must be explicitly opened, limited to synthetic test traffic, and shut down after testing. No public callback or live WhatsApp test has been verified in this workspace.
 
 See Meta's [Cloud API getting-started guide](https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started) and [webhook setup guide](https://developers.facebook.com/docs/graph-api/webhooks/getting-started).
 
 ## Hosting and operational readiness
 
-No Git remote, provider account, public deployment, or live WhatsApp connection is configured. A possible synthetic demo stack is a static frontend host, a container-capable API host, and managed PostgreSQL; free-tier availability and limits change and must be confirmed at deployment time. Do not put real humanitarian or personal data on an unapproved free tier.
+An `origin` Git remote is configured, but no public deployment or live WhatsApp connection has been verified in this workspace. A possible synthetic demo stack is a static frontend host, a container-capable API host, and managed PostgreSQL; free-tier availability and limits change and must be confirmed at deployment time. Do not put real humanitarian or personal data on an unapproved free tier.
 
 Before any public or organizational deployment: apply and test schema migrations on a restored copy; add login abuse protection and operational monitoring; configure HTTPS, secure cookies, exact CORS origins, secret management, backups and restore drills; define data retention and access procedures; and obtain the organization's approval. For cookie-based auth across separate hosts, use same-site custom subdomains and explicitly allow the frontend origin.
 

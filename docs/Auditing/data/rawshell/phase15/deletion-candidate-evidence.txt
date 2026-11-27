@@ -1,0 +1,49 @@
+Targeted deletion-candidate reference scan.
+Tracked text files searched: 243
+Candidate: react-router-dom
+Total literal matches: 19
+Package metadata/lockfile matches: 4
+First-party source matches: 0
+Test matches: 0
+Documentation matches: 8
+Non-metadata tracked references: 15
+
+Matches:
+docs\knowledge\master\extract-concise-log.txt:11577: frontend\node_modules\react-router-dom\dist\index.d.mts
+docs\knowledge\master\extract-concise-log.txt:11578: frontend\node_modules\react-router-dom\dist\index.d.ts
+docs\knowledge\master\extract-concise-log.txt:11579: frontend\node_modules\react-router-dom\dist\index.js
+docs\knowledge\master\extract-concise-log.txt:11580: frontend\node_modules\react-router-dom\dist\index.mjs
+docs\knowledge\master\extract-concise-log.txt:11581: frontend\node_modules\react-router-dom\LICENSE.md
+docs\knowledge\master\extract-concise-log.txt:11582: frontend\node_modules\react-router-dom\package.json
+docs\knowledge\master\extract-concise-log.txt:11583: frontend\node_modules\react-router-dom\README.md
+docs\knowledge\master\system-map.md:11446: - frontend\node_modules\react-router-dom\LICENSE.md
+docs\knowledge\master\system-map.md:11447: - frontend\node_modules\react-router-dom\package.json
+docs\knowledge\master\system-map.md:11448: - frontend\node_modules\react-router-dom\README.md
+docs\knowledge\master\system-map.md:11449: - frontend\node_modules\react-router-dom\dist\index.d.mts
+docs\knowledge\master\system-map.md:11450: - frontend\node_modules\react-router-dom\dist\index.d.ts
+docs\knowledge\master\system-map.md:11451: - frontend\node_modules\react-router-dom\dist\index.js
+docs\knowledge\master\system-map.md:11452: - frontend\node_modules\react-router-dom\dist\index.mjs
+docs\projects\overview\caseloop_master_project_charter.md:293: "react-router-dom": "^7.18.5"
+frontend\package-lock.json:14: "react-router-dom": "^7.18.5"
+frontend\package-lock.json:2350: "node_modules/react-router-dom": {
+frontend\package-lock.json:2352: "resolved": "https://registry.npmmirror.com/react-router-dom/-/react-router-dom-7.18.5.tgz",
+frontend\package.json:15: "react-router-dom": "^7.18.5"
+
+Non-metadata tracked references:
+docs\knowledge\master\extract-concise-log.txt:11577: frontend\node_modules\react-router-dom\dist\index.d.mts
+docs\knowledge\master\extract-concise-log.txt:11578: frontend\node_modules\react-router-dom\dist\index.d.ts
+docs\knowledge\master\extract-concise-log.txt:11579: frontend\node_modules\react-router-dom\dist\index.js
+docs\knowledge\master\extract-concise-log.txt:11580: frontend\node_modules\react-router-dom\dist\index.mjs
+docs\knowledge\master\extract-concise-log.txt:11581: frontend\node_modules\react-router-dom\LICENSE.md
+docs\knowledge\master\extract-concise-log.txt:11582: frontend\node_modules\react-router-dom\package.json
+docs\knowledge\master\extract-concise-log.txt:11583: frontend\node_modules\react-router-dom\README.md
+docs\knowledge\master\system-map.md:11446: - frontend\node_modules\react-router-dom\LICENSE.md
+docs\knowledge\master\system-map.md:11447: - frontend\node_modules\react-router-dom\package.json
+docs\knowledge\master\system-map.md:11448: - frontend\node_modules\react-router-dom\README.md
+docs\knowledge\master\system-map.md:11449: - frontend\node_modules\react-router-dom\dist\index.d.mts
+docs\knowledge\master\system-map.md:11450: - frontend\node_modules\react-router-dom\dist\index.d.ts
+docs\knowledge\master\system-map.md:11451: - frontend\node_modules\react-router-dom\dist\index.js
+docs\knowledge\master\system-map.md:11452: - frontend\node_modules\react-router-dom\dist\index.mjs
+docs\projects\overview\caseloop_master_project_charter.md:293: "react-router-dom": "^7.18.5"
+
+Disposition: no deletion approved; documentation references require review.

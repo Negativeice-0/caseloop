@@ -1,0 +1,127 @@
+﻿{
+    "phase":  "phase15",
+    "objective":  "Deletion Candidates",
+    "generated":  "2026-11-27 15:07:43",
+    "evidenceCount":  2,
+    "totalLines":  63,
+    "totalBytes":  4990,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 2",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "No first-party source references to router dependency: True (evidence: deletion-candidate-evidence.txt)",
+                          "Dependency deletion is not approved: True (evidence: deletion-candidate-evidence.txt)",
+                          "Documentation references assessed: True (evidence: deletion-candidate-evidence.txt)",
+                          "Navigation runtime evidence present: True (evidence: runtime-navigation-reference.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "react-router-dom",
+                            "count":  35
+                        },
+                        {
+                            "keyword":  "frontend",
+                            "count":  33
+                        },
+                        {
+                            "keyword":  "node_modules",
+                            "count":  29
+                        },
+                        {
+                            "keyword":  "master",
+                            "count":  28
+                        },
+                        {
+                            "keyword":  "knowledge",
+                            "count":  28
+                        },
+                        {
+                            "keyword":  "dist",
+                            "count":  16
+                        },
+                        {
+                            "keyword":  "index",
+                            "count":  16
+                        },
+                        {
+                            "keyword":  "extract-concise-log",
+                            "count":  14
+                        },
+                        {
+                            "keyword":  "system-map",
+                            "count":  14
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "json",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "matches",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "package",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "administrator",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "review",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "analysis",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "control",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "profile",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "reports",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "intake",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "officer",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "system",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "readme",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "license",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "absent",
+                            "count":  4
+                        }
+                    ]
+}

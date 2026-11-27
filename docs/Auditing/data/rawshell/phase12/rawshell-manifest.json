@@ -1,0 +1,20 @@
+﻿{
+    "phase":  "phase12",
+    "objective":  "Dead Route Wiring Analysis",
+    "generated":  "2026-11-27 15:03:29",
+    "evidenceFiles":  [
+                          "tab-reference-matrix.txt",
+                          "router-source-references.txt",
+                          "router-package-reference.txt",
+                          "auth-path-references.txt"
+                      ],
+    "evidenceCount":  4,
+    "primaryEvidence":  [
+                            "tab-reference-matrix.txt",
+                            "router-source-references.txt",
+                            "auth-path-references.txt"
+                        ],
+    "notes":  [
+                  "References searched in first-party frontend source; generated dependencies and build output excluded."
+              ]
+}

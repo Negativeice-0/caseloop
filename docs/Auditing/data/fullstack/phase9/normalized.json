@@ -1,0 +1,126 @@
+﻿{
+    "phase":  "phase9",
+    "objective":  "Navigation Audit and Cleanup Candidates",
+    "generated":  "2026-11-27 14:55:40",
+    "evidenceCount":  3,
+    "totalLines":  62,
+    "totalBytes":  5683,
+    "indicators":  {
+                       "PASS":  0,
+                       "FAIL":  0,
+                       "WARNING":  0,
+                       "ERROR":  0,
+                       "TODO":  0
+                   },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 3",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Navigation tabs defined: 7 (evidence: navigation-tabs.txt)",
+                          "Role-gated navigation evidence present: True (evidence: navigation-source-evidence.txt)",
+                          "No frontend source imports of react-router-dom: True (evidence: router-source-references.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "frontend",
+                            "count":  51
+                        },
+                        {
+                            "keyword":  "layout",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "mainlayout",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "layouts",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "onclick",
+                            "count":  19
+                        },
+                        {
+                            "keyword":  "activetab",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  16
+                        },
+                        {
+                            "keyword":  "setactivetab",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "currentuser",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "role",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "responses",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "button",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "selecttab",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "reports",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "classname",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "intake",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "text-left",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "flex",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "timeline",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "items-center",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "gap-3",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "assignments",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "profile",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "cancoordinate",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "window",
+                            "count":  5
+                        }
+                    ]
+}

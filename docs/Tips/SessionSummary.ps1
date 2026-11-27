@@ -1,453 +1,553 @@
+# .\docs\Tips\SessionSummary.ps1
 #Requires -Version 5.1
-
-<#
-========================================================================
-
-SESSION SUMMARY GENERATOR
-
-Purpose
--------
-Generate:
-
-docs\Auditing\data\fullstack\<phase>\summary.md
-
-docs\Auditing\data\snrlead\<phase>\verification.md
-
-from rawshell evidence.
-
-Usage
------
-
-.\docs\Tips\SessionSummary.ps1 -Phase phase7
-
-========================================================================
-#>
-
-param(
-    [Parameter(Mandatory)]
-    [string]$Phase
-)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 # ============================================================
-# Phase Definitions
+# Configuration
 # ============================================================
 
-$PhaseInfo = @{
+$KeywordLimit = 25
+$ExcerptLength = 300
 
-    phase7 = @{
-        Objective =
-        "Frontend Backend Database Connection Map"
+$StopWords = @(
+    "and","the","for","with","from","that","this",
+    "into","there","their","have","has","had",
+    "been","were","was","will","would","could",
+    "should","phase","docs","data","file","files",
+    "summary","verification","audit","auditing"
+)
 
-        NextAction =
-        "Verify frontend feature to backend route mappings"
+# ============================================================
+# Helper Functions
+# ============================================================
 
-        ImportantFiles = @(
-            "frontend/src/services/api.ts"
-            "frontend/src/features"
-            "backend/app/api"
-            "backend/app/services"
-            "backend/app/models/models.py"
-        )
-    }
+function Write-MarkdownFile {
+    param(
+        [string]$Path,
+        [string[]]$Content
+    )
 
-    phase8 = @{
-        Objective =
-        "README and Documentation Audit"
-
-        NextAction =
-        "Compare documentation claims against verified artifacts"
-
-        ImportantFiles = @(
-            "README.md"
-            "docs/deployment"
-            "docs/design"
-        )
-    }
-
-    phase9 = @{
-        Objective =
-        "Navigation Audit"
-
-        NextAction =
-        "Identify redundant navigation entries"
-
-        ImportantFiles = @(
-            "frontend/src/App.tsx"
-            "frontend/src/features"
-        )
-    }
-
-    phase10 = @{
-        Objective =
-        "Visibility and Route Testing"
-
-        NextAction =
-        "Verify access by role"
-
-        ImportantFiles = @(
-            "frontend/src"
-            "backend/app/api"
-        )
-    }
-
-    phase11 = @{
-        Objective =
-        "Route Disposition Review"
-
-        NextAction =
-        "Classify routes as retain, refactor, or candidate"
-
-        ImportantFiles = @(
-            "backend/app/api"
-        )
-    }
-
-    phase12 = @{
-        Objective =
-        "Dead Route Wiring Analysis"
-
-        NextAction =
-        "Trace route references"
-
-        ImportantFiles = @(
-            "frontend/src"
-            "backend/app/api"
-        )
-    }
-
-    phase13 = @{
-        Objective =
-        "Mixed Responsibility Refactor Review"
-
-        NextAction =
-        "Identify components containing multiple responsibilities"
-
-        ImportantFiles = @(
-            "frontend/src/features"
-            "backend/app/services"
-        )
-    }
-
-    phase14 = @{
-        Objective =
-        "Reference Audit"
-
-        NextAction =
-        "Trace all references before deletion review"
-
-        ImportantFiles = @(
-            "frontend/src"
-            "backend/app"
-        )
-    }
-
-    phase15 = @{
-        Objective =
-        "Deletion Candidates"
-
-        NextAction =
-        "Produce candidate list only"
-
-        ImportantFiles = @(
-            "frontend/src"
-            "backend/app"
-        )
-    }
-
-    phase16 = @{
-        Objective =
-        "Backend Authorization Tests"
-
-        NextAction =
-        "Review authorization coverage"
-
-        ImportantFiles = @(
-            "backend/tests"
-            "backend/app/core"
-        )
-    }
-
-    phase17 = @{
-        Objective =
-        "Frontend Navigation Tests"
-
-        NextAction =
-        "Validate navigation coverage"
-
-        ImportantFiles = @(
-            "frontend/src"
-        )
-    }
-
-    phase18 = @{
-        Objective =
-        "Smoke Tests and Build Verification"
-
-        NextAction =
-        "Run build and test validation"
-
-        ImportantFiles = @(
-            "frontend"
-            "backend"
-        )
-    }
-
-    phase19 = @{
-        Objective =
-        "Documentation Update"
-
-        NextAction =
-        "Bring documentation in line with verified system behavior"
-
-        ImportantFiles = @(
-            "README.md"
-            "docs"
-        )
-    }
-
-    phase20 = @{
-        Objective =
-        "Final Summary and Handover"
-
-        NextAction =
-        "Generate final review and handover package"
-
-        ImportantFiles = @(
-            "docs"
-        )
-    }
+    $Text = $Content -join "`n"
+    $Text = $Text.Replace("`r`n", "`n").Replace("`r", "`n")
+    $Text = [regex]::Replace($Text, "[ \t]+(?=`n)", "")
+    $Text = $Text.TrimEnd([char[]]"`r`n") + "`n"
+    [System.IO.File]::WriteAllText(
+        $Path,
+        $Text,
+        (New-Object System.Text.UTF8Encoding($false))
+    )
 }
 
-if(-not $PhaseInfo.ContainsKey($Phase))
+function Get-KeywordFrequency {
+    param(
+        [string]$Text
+    )
+
+    $Frequency = @{}
+
+    $RegexHits =
+        [regex]::Matches(
+            $Text.ToLower(),
+            '\b[a-z][a-z0-9_-]{3,}\b'
+        )
+
+    foreach($Hit in $RegexHits)
+    {
+        $Word = $Hit.Value
+
+        if($StopWords -contains $Word)
+        {
+            continue
+        }
+
+        if(-not $Frequency.ContainsKey($Word))
+        {
+            $Frequency[$Word] = 0
+        }
+
+        $Frequency[$Word]++
+    }
+
+    return $Frequency.GetEnumerator() |
+        Sort-Object Value -Descending |
+        Select-Object -First $KeywordLimit
+}
+
+# ============================================================
+# Load Phase Metadata
+# ============================================================
+
+$CurrentPhaseFile =
+"docs\Auditing\control\current-phase.json"
+
+if(-not (Test-Path $CurrentPhaseFile))
 {
-    throw "Unknown phase: $Phase"
+    throw "Missing: $CurrentPhaseFile"
 }
 
-$Current = $PhaseInfo[$Phase]
+$CurrentPhase =
+    Get-Content `
+        $CurrentPhaseFile `
+        -Raw |
+    ConvertFrom-Json
+
+$Phase = $CurrentPhase.phase
+
+if([string]::IsNullOrWhiteSpace($Phase))
+{
+    throw "The active phase control file does not define a phase."
+}
 
 # ============================================================
 # Paths
 # ============================================================
 
-$RawShellDir =
+$RawDir =
 "docs\Auditing\data\rawshell\$Phase"
 
-$FullstackDir =
+$FullDir =
 "docs\Auditing\data\fullstack\$Phase"
 
-$SnrLeadDir =
+$LeadDir =
 "docs\Auditing\data\snrlead\$Phase"
 
-if(!(Test-Path $RawShellDir))
+New-Item `
+    -ItemType Directory `
+    -Force `
+    -Path $FullDir | Out-Null
+
+New-Item `
+    -ItemType Directory `
+    -Force `
+    -Path $LeadDir | Out-Null
+
+if(-not (Test-Path $RawDir))
 {
-    throw "Missing evidence directory: $RawShellDir"
-}
-
-New-Item -ItemType Directory -Force -Path $FullstackDir | Out-Null
-New-Item -ItemType Directory -Force -Path $SnrLeadDir | Out-Null
-
-$SummaryFile =
-Join-Path $FullstackDir "summary.md"
-
-$VerificationFile =
-Join-Path $SnrLeadDir "verification.md"
-
-# ============================================================
-# Discover Evidence
-# ============================================================
-
-$RawFiles =
-Get-ChildItem `
-    $RawShellDir `
-    -Recurse `
-    -File `
-    -ErrorAction SilentlyContinue
-
-$EvidenceCount =
-@($RawFiles).Count
-
-$EvidenceList =
-if($EvidenceCount -gt 0)
-{
-    ($RawFiles |
-        Select-Object -ExpandProperty Name |
-        Sort-Object |
-        ForEach-Object {
-            "- $_"
-        }) -join "`r`n"
-}
-else
-{
-    "- none"
+    throw "Missing rawshell directory: $RawDir"
 }
 
 # ============================================================
-# Verification Status
+# Load Manifest
 # ============================================================
 
-if($EvidenceCount -gt 0)
+$ManifestFile =
+Join-Path `
+    $RawDir `
+    "rawshell-manifest.json"
+
+$Manifest = $null
+
+if(Test-Path $ManifestFile)
 {
-    $Status = "PASS"
+    $Manifest =
+        Get-Content `
+            $ManifestFile `
+            -Raw |
+        ConvertFrom-Json
 }
-else
+
+# ============================================================
+# Evidence Discovery
+# ============================================================
+
+$EvidenceFiles = @(
+    Get-ChildItem `
+        -Path $RawDir `
+        -Recurse `
+        -File |
+    Where-Object {
+        $_.Name -ne "rawshell-manifest.json"
+    }
+)
+
+if($EvidenceFiles.Count -eq 0)
 {
-    $Status = "PARTIAL"
+    throw "No evidence files found."
 }
 
 # ============================================================
-# Summary
+# Evidence Parsing
 # ============================================================
 
-$ImportantFiles =
-($Current.ImportantFiles | ForEach-Object {
-    "- $_"
-}) -join "`r`n"
+$AllText = @()
 
-$Summary = @"
-# Summary
+$ExcerptEntries = @()
 
-## Metadata
+$TotalLines = 0
+$TotalBytes = 0
 
-Date:
-$(Get-Date -Format "yyyy-MM-dd HH:mm")
+foreach($EvidenceFile in $EvidenceFiles)
+{
+    $Text =
+        Get-Content `
+            $EvidenceFile.FullName `
+            -Raw `
+            -ErrorAction SilentlyContinue
 
-Phase:
-$Phase
+    if([string]::IsNullOrWhiteSpace($Text))
+    {
+        continue
+    }
 
-Status:
-$Status
+    $AllText += $Text
 
----
+    $TotalBytes += $EvidenceFile.Length
 
-## Objective
+    $TotalLines +=
+        ($Text -split "`n").Count
 
-$($Current.Objective)
+    $Length =
+        [Math]::Min(
+            $ExcerptLength,
+            $Text.Length
+        )
 
----
+    $ExcerptEntries +=
+        [pscustomobject]@{
+            File    = $EvidenceFile.Name
+            Excerpt = $Text.Substring(0,$Length)
+        }
+}
 
-## Evidence Source
+$CombinedText =
+$AllText -join "`n"
 
-$RawShellDir
+# ============================================================
+# Fact Extractors
+# ============================================================
 
----
+$VerifiedFacts = @(
+    "Evidence files discovered: $($EvidenceFiles.Count)"
+    "Evidence successfully parsed"
+    "Keyword extraction completed"
+)
 
-## Evidence Files
+foreach($Extractor in @($CurrentPhase.factExtractors))
+{
+    if(
+        [string]::IsNullOrWhiteSpace($Extractor.file) -or
+        [string]::IsNullOrWhiteSpace($Extractor.type) -or
+        [string]::IsNullOrWhiteSpace($Extractor.label)
+    )
+    {
+        throw "Each fact extractor must define file, type, and label."
+    }
 
-$EvidenceList
+    $ExtractorPath = Join-Path $RawDir $Extractor.file
+    $ExtractorType = [string]$Extractor.type
 
----
+    if($ExtractorType -eq "exists")
+    {
+        $Value = Test-Path -LiteralPath $ExtractorPath
+    }
+    else
+    {
+        if(-not (Test-Path -LiteralPath $ExtractorPath -PathType Leaf))
+        {
+            throw "Fact extractor evidence file is missing: $ExtractorPath"
+        }
 
-## Important Files
+        $ExtractorText = Get-Content -LiteralPath $ExtractorPath -Raw
 
-$ImportantFiles
+        switch($ExtractorType)
+        {
+            "count-lines" {
+                $Value = @(Get-Content -LiteralPath $ExtractorPath).Count
+            }
+            "count-matches" {
+                if([string]::IsNullOrWhiteSpace($Extractor.search))
+                {
+                    throw "count-matches requires a search pattern: $($Extractor.label)"
+                }
 
----
+                $Value = [regex]::Matches(
+                    $ExtractorText,
+                    [string]$Extractor.search
+                ).Count
+            }
+            "contains" {
+                if($null -eq $Extractor.search)
+                {
+                    throw "contains requires a search value: $($Extractor.label)"
+                }
 
-## Next Action
+                $Value = $ExtractorText.Contains([string]$Extractor.search)
+            }
+            "first-match" {
+                if([string]::IsNullOrWhiteSpace($Extractor.search))
+                {
+                    throw "first-match requires a search pattern: $($Extractor.label)"
+                }
 
-$($Current.NextAction)
+                $Match = [regex]::Match(
+                    $ExtractorText,
+                    [string]$Extractor.search
+                )
+                $Value = if($Match.Success) { $Match.Value } else { "not found" }
+            }
+            default {
+                throw "Unsupported fact extractor type: $ExtractorType"
+            }
+        }
+    }
 
----
+    $VerifiedFacts +=
+        "$($Extractor.label): $Value (evidence: $($Extractor.file))"
+}
 
-## Restart Instructions
+if($Manifest)
+{
+    $VerifiedFacts += "Manifest detected"
+}
 
-1. Read control.md
+# ============================================================
+# Indicators
+# ============================================================
 
-2. Read verification.md
+$RegexOptions =
+[System.Text.RegularExpressions.RegexOptions]::IgnoreCase
 
-3. Continue current phase
+$PassCount =
+([regex]::Matches(
+    $CombinedText,
+    '\bpass\b',
+    $RegexOptions
+)).Count
 
-4. Do not rerun completed inventories
-"@
+$FailCount =
+([regex]::Matches(
+    $CombinedText,
+    '\bfail\b',
+    $RegexOptions
+)).Count
 
-$Summary |
+$WarningCount =
+([regex]::Matches(
+    $CombinedText,
+    '\bwarning\b',
+    $RegexOptions
+)).Count
+
+$ErrorCount =
+([regex]::Matches(
+    $CombinedText,
+    '\berror\b',
+    $RegexOptions
+)).Count
+
+$TodoCount =
+([regex]::Matches(
+    $CombinedText,
+    '\btodo\b',
+    $RegexOptions
+)).Count
+
+# ============================================================
+# Keywords
+# ============================================================
+
+$Keywords =
+Get-KeywordFrequency `
+    -Text $CombinedText
+
+# ============================================================
+# Status
+# ============================================================
+
+$Status = "REVIEW REQUIRED"
+
+# ============================================================
+# Normalized JSON
+# ============================================================
+
+$Normalized = [ordered]@{
+    phase         = $Phase
+    objective     = $CurrentPhase.objective
+    generated     = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    evidenceCount = $EvidenceFiles.Count
+    totalLines    = $TotalLines
+    totalBytes    = $TotalBytes
+
+    textMentions = [ordered]@{
+        PASS_MENTIONS    = $PassCount
+        FAIL_MENTIONS    = $FailCount
+        WARNING_MENTIONS = $WarningCount
+        ERROR_MENTIONS   = $ErrorCount
+        TODO_MENTIONS    = $TodoCount
+    }
+
+    verifiedFacts = @($VerifiedFacts)
+
+    topKeywords = @(
+        foreach($Keyword in $Keywords)
+        {
+            [ordered]@{
+                keyword = $Keyword.Key
+                count   = $Keyword.Value
+            }
+        }
+    )
+}
+
+$Normalized |
+ConvertTo-Json -Depth 20 |
 Set-Content `
-    -Path $SummaryFile `
+    (Join-Path $FullDir "normalized.json") `
     -Encoding UTF8
 
 # ============================================================
-# Verification
+# keyword-frequency.json
 # ============================================================
 
-$Verification = @"
-# Verification
-
-## Status
-
-$Status
-
----
-
-## Evidence Count
-
-$EvidenceCount
-
----
-
-## Evidence Files
-
-$EvidenceList
-
----
-
-## Findings
-
-Evidence exists for review.
-
----
-
-## Risks
-
-Artifact contents have not been manually reviewed.
-
-PASS does not imply correctness.
-
----
-
-## Verification Commands
-
-Get-ChildItem "$RawShellDir" -Recurse
-
-Get-Content "$SummaryFile"
-
-Get-Content "$VerificationFile"
-
----
-
-## Recommended Next Action
-
-$($Current.NextAction)
-
----
-
-## Stop Conditions
-
-Do not close the phase until:
-
-- evidence reviewed
-- outputs reviewed
-- findings validated
-"@
-
-$Verification |
+@(
+    foreach($Keyword in $Keywords)
+    {
+        [pscustomobject]@{
+            keyword = $Keyword.Key
+            count   = $Keyword.Value
+        }
+    }
+) |
+ConvertTo-Json -Depth 10 |
 Set-Content `
-    -Path $VerificationFile `
+    (Join-Path $FullDir "keyword-frequency.json") `
     -Encoding UTF8
 
 # ============================================================
-# Console
+# evidence-excerpts.md
+# ============================================================
+
+$Output = @(
+    "# Evidence Excerpts",
+    ""
+)
+
+foreach($Entry in $ExcerptEntries)
+{
+    $Output += "## $($Entry.File)"
+    $Output += ""
+    $Output += $Entry.Excerpt
+    $Output += ""
+}
+
+Write-MarkdownFile `
+    -Path (Join-Path $FullDir "evidence-excerpts.md") `
+    -Content $Output
+
+# ============================================================
+# findings.md
+# ============================================================
+
+$Output = @(
+    "# Findings",
+    "",
+    "- Files Parsed: $($EvidenceFiles.Count)",
+    "- Lines Parsed: $TotalLines",
+    "- Text mentions (not test outcomes): PASS $PassCount; FAIL $FailCount; WARNING $WarningCount; ERROR $ErrorCount; TODO $TodoCount"
+)
+
+Write-MarkdownFile `
+    -Path (Join-Path $FullDir "findings.md") `
+    -Content $Output
+
+# ============================================================
+# summary.md
+# ============================================================
+
+$Output = @(
+    "# Summary",
+    "",
+    "Phase: $Phase",
+    "Objective: $($CurrentPhase.objective)",
+    "Status: $Status",
+    "",
+    "## Verified Facts",
+    ""
+)
+
+foreach($Fact in $VerifiedFacts)
+{
+    $Output += "- $Fact"
+}
+
+$Output += ""
+$Output += "## Next Action"
+$Output += ""
+$Output += $CurrentPhase.nextAction
+
+Write-MarkdownFile `
+    -Path (Join-Path $FullDir "summary.md") `
+    -Content $Output
+
+# ============================================================
+# verification.md
+# ============================================================
+
+$Output = @(
+    "# Verification",
+    "",
+    "Status: $Status",
+    "Evidence Files: $($EvidenceFiles.Count)",
+    "Evidence Lines: $TotalLines",
+    "This generator reports evidence-derived facts; manual review is still required.",
+    ""
+)
+
+foreach($Fact in $VerifiedFacts)
+{
+    $Output += "- $Fact"
+}
+
+Write-MarkdownFile `
+    -Path (Join-Path $LeadDir "verification.md") `
+    -Content $Output
+
+# ============================================================
+# logbook.md
+# ============================================================
+
+$Rating = 8
+
+if($FailCount -gt 0)
+{
+    $Rating = 6
+}
+elseif($WarningCount -gt 0)
+{
+    $Rating = 7
+}
+
+$Output = @(
+    "Work Done:",
+    "Processed $($EvidenceFiles.Count) evidence files and generated audit artifacts.",
+    "",
+    "Effective Rating:",
+    "$Rating/10",
+    "",
+    "Knowledge Gained:",
+    "",
+    "People Interacted With:",
+    "Copilot"
+)
+
+Write-MarkdownFile `
+    -Path (Join-Path $FullDir "logbook.md") `
+    -Content $Output
+
+# ============================================================
+# Console Output
 # ============================================================
 
 Write-Host ""
-Write-Host "PASS"
-
+Write-Host "PASS SessionSummary Complete"
 Write-Host ""
-Write-Host "Summary:"
-Write-Host $SummaryFile
 
-Write-Host ""
-Write-Host "Verification:"
-Write-Host $VerificationFile
+Write-Host (Join-Path $FullDir "normalized.json")
+Write-Host (Join-Path $FullDir "keyword-frequency.json")
+Write-Host (Join-Path $FullDir "evidence-excerpts.md")
+Write-Host (Join-Path $FullDir "findings.md")
+Write-Host (Join-Path $FullDir "summary.md")
+Write-Host (Join-Path $LeadDir "verification.md")
+Write-Host (Join-Path $FullDir "logbook.md")

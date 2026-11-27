@@ -148,9 +148,10 @@ if($SummaryContent -match "matrix")
     "Normalized evidence is more useful than raw search results."
 }
 
-$Lessons =
-$Lessons |
-Sort-Object -Unique
+$Lessons = @(
+    $Lessons |
+    Sort-Object -Unique
+)
 
 # =====================================================
 # Useful Files
@@ -170,9 +171,10 @@ ForEach-Object {
     }
 }
 
-$UsefulFiles =
-$UsefulFiles |
-Sort-Object -Unique
+$UsefulFiles = @(
+    $UsefulFiles |
+    Sort-Object -Unique
+)
 
 # =====================================================
 # Current Phase Scripts
@@ -185,13 +187,14 @@ $PhaseScriptDir =
 
 if(Test-Path $PhaseScriptDir)
 {
-    $Scripts =
-    Get-ChildItem `
-        $PhaseScriptDir `
-        -Filter *.ps1 `
-        -File `
-        -ErrorAction SilentlyContinue |
-    Select-Object -ExpandProperty FullName
+    $Scripts = @(
+        Get-ChildItem `
+            $PhaseScriptDir `
+            -Filter *.ps1 `
+            -File `
+            -ErrorAction SilentlyContinue |
+        Select-Object -ExpandProperty FullName
+    )
 }
 
 # =====================================================

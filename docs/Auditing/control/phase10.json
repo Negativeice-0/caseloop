@@ -1,0 +1,53 @@
+﻿{
+    "phase":  "phase10",
+    "phaseNumber":  10,
+    "objective":  "Visibility and Route Testing",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Admin-only visibility gate present",
+                               "search":  "currentUser.role === \u0027admin\u0027",
+                               "file":  "visibility-source-evidence.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "No frontend source test files detected",
+                               "search":  "No .test. or .spec. files found",
+                               "file":  "frontend-test-capability.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Admin entry-point evidence present",
+                               "search":  "\u0027/admin\u0027",
+                               "file":  "entry-point-evidence.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/src/App.tsx",
+                           "frontend/src/layouts/MainLayout.tsx",
+                           "frontend/src/features/auth/AuthGateway.tsx"
+                       ],
+    "expectedEvidence":  [
+                             "visibility-source-evidence.txt",
+                             "frontend-test-capability.txt",
+                             "entry-point-evidence.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Responder cannot open coordinator/admin views",
+                                 "Coordinator sees intake and reports but not admin controls",
+                                 "Admin sees all views",
+                                 "Authentication entry paths load expected screens"
+                             ],
+    "nextAction":  "Review route disposition in Phase 11.",
+    "generatedBy":  "CASELOOP"
+}

@@ -1,0 +1,18 @@
+﻿{
+    "phase":  "phase9",
+    "objective":  "Navigation Audit and Cleanup Candidates",
+    "generated":  "2026-11-27 14:55:32",
+    "evidenceFiles":  [
+                          "navigation-tabs.txt",
+                          "navigation-source-evidence.txt",
+                          "router-source-references.txt"
+                      ],
+    "evidenceCount":  3,
+    "primaryEvidence":  [
+                            "navigation-tabs.txt",
+                            "navigation-source-evidence.txt"
+                        ],
+    "notes":  [
+                  "Static navigation and route-wiring evidence collected; no deletion decisions made."
+              ]
+}

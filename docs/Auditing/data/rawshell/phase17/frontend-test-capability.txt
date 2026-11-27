@@ -1,0 +1,5 @@
+Frontend test scripts:
+None declared in frontend/package.json.
+
+Frontend source test files:
+No .test. or .spec. files found under frontend/src.

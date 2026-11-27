@@ -1,0 +1,69 @@
+﻿{
+    "phase":  "phase8",
+    "phaseNumber":  8,
+    "objective":  "README and Documentation Audit",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "README files discovered",
+                               "file":  "readme-inventory.txt",
+                               "type":  "count-lines"
+                           },
+                           {
+                               "label":  "Documentation files discovered",
+                               "file":  "documentation-inventory.txt",
+                               "type":  "count-lines"
+                           },
+                           {
+                               "label":  "README.md present",
+                               "search":  "README.md",
+                               "file":  "documentation-coverage.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "docker-compose.yml present",
+                               "search":  "docker-compose.yml",
+                               "file":  "documentation-coverage.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "README.md",
+                           "docs/deployment",
+                           "docs/design"
+                       ],
+    "expectedEvidence":  [
+                             "documentation-inventory.txt",
+                             "readme-inventory.txt",
+                             "documentation-coverage.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "README accuracy",
+                                 "Deployment documentation accuracy",
+                                 "Architecture documentation accuracy",
+                                 "API documentation accuracy"
+                             ],
+    "verificationCommands":  [
+                                 "Get-ChildItem docs/Auditing/data/rawshell/phase8",
+                                 "Get-Content docs/Auditing/data/rawshell/phase8/documentation-coverage.txt",
+                                 "Get-Content docs/Auditing/control/phase8.json"
+                             ],
+    "successCriteria":  [
+                            "Documentation inventory exists",
+                            "README inventory exists",
+                            "Coverage report exists",
+                            "Manifest exists",
+                            "Control file exists"
+                        ],
+    "nextAction":  "Begin Phase 9: Navigation Audit",
+    "generatedBy":  "CASELOOP"
+}

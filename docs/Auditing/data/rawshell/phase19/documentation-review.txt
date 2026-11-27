@@ -1,0 +1,7 @@
+Phase 19 documentation checks:
+README.md: required safety/deployment guidance present.
+docs\deployment\DEPLOYMENT.md: required safety/deployment guidance present.
+docs\deployment\oracle-whatsapp-learning-runbook.md: required safety/deployment guidance present.
+README no longer claims the seeder refuses default-account creation.
+Oracle runbook recommends: Promote the same reviewed commit from test/staging to production.
+Phase 18 backend evidence cross-check: 28 passed, 1 failed (seed-guard expectation).

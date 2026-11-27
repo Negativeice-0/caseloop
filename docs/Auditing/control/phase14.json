@@ -1,0 +1,53 @@
+﻿{
+    "phase":  "phase14",
+    "phaseNumber":  14,
+    "objective":  "Reference Audit",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Candidate reference groups",
+                               "search":  "CANDIDATE:",
+                               "file":  "target-reference-map.txt",
+                               "type":  "count-matches"
+                           },
+                           {
+                               "label":  "No router source imports found",
+                               "search":  "None found in frontend/src.",
+                               "file":  "router-reference-audit.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Router dependency is declared in package metadata",
+                               "search":  "frontend\\package.json",
+                               "file":  "router-reference-audit.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/src",
+                           "frontend/package.json",
+                           "frontend/package-lock.json",
+                           "backend/app",
+                           "backend/tests"
+                       ],
+    "expectedEvidence":  [
+                             "target-reference-map.txt",
+                             "router-reference-audit.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Trace all references before marking any candidate unused",
+                                 "Include runtime, tests, configuration, and deployment documentation",
+                                 "Carry only evidence-supported deletion candidates into Phase 15"
+                             ],
+    "nextAction":  "Review deletion candidates in Phase 15.",
+    "generatedBy":  "CASELOOP"
+}

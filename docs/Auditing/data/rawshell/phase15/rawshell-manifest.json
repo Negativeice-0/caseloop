@@ -1,0 +1,17 @@
+﻿{
+    "phase":  "phase15",
+    "objective":  "Deletion Candidates",
+    "generated":  "2026-11-27 15:07:43",
+    "evidenceFiles":  [
+                          "deletion-candidate-evidence.txt",
+                          "runtime-navigation-reference.txt"
+                      ],
+    "evidenceCount":  2,
+    "primaryEvidence":  [
+                            "deletion-candidate-evidence.txt",
+                            "runtime-navigation-reference.txt"
+                        ],
+    "notes":  [
+                  "Deletion decisions remain recommendations; no source or dependency was removed."
+              ]
+}

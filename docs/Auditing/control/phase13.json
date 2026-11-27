@@ -1,0 +1,58 @@
+﻿{
+    "phase":  "phase13",
+    "phaseNumber":  13,
+    "objective":  "Mixed Responsibility Refactor Review",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "UI component files measured",
+                               "file":  "component-metrics.txt",
+                               "type":  "count-lines"
+                           },
+                           {
+                               "label":  "Workflow component boundary evidence present",
+                               "search":  "export function IntakeReview",
+                               "file":  "component-boundaries.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Timeline component boundary evidence present",
+                               "search":  "export function TimelineView",
+                               "file":  "component-boundaries.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Reports component boundary evidence present",
+                               "search":  "export function ReportsView",
+                               "file":  "component-boundaries.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend\\src\\App.tsx",
+                           "frontend\\src\\layouts\\MainLayout.tsx",
+                           "frontend\\src\\features\\workflow\\WorkflowViews.tsx",
+                           "frontend\\src\\features\\admin\\AdminControl.tsx",
+                           "frontend\\src\\features\\assignments\\AssignmentsManager.tsx"
+                       ],
+    "expectedEvidence":  [
+                             "component-metrics.txt",
+                             "component-boundaries.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Review workflow view co-location",
+                                 "Review admin control component boundaries",
+                                 "Preserve role behavior and rendered output in any future refactor"
+                             ],
+    "nextAction":  "Trace references across the repository in Phase 14.",
+    "generatedBy":  "CASELOOP"
+}
