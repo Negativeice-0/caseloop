@@ -1,0 +1,54 @@
+﻿{
+    "phase":  "phase12",
+    "phaseNumber":  12,
+    "objective":  "Dead Route Wiring Analysis",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Navigation tab reference groups",
+                               "search":  "TAB:",
+                               "file":  "tab-reference-matrix.txt",
+                               "type":  "count-matches"
+                           },
+                           {
+                               "label":  "No router source references found",
+                               "search":  "No react-router-dom references found",
+                               "file":  "router-source-references.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Admin auth path is referenced",
+                               "search":  "\u0027/admin\u0027",
+                               "file":  "auth-path-references.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/src/App.tsx",
+                           "frontend/src/layouts/MainLayout.tsx",
+                           "frontend/src/features/auth/AuthGateway.tsx",
+                           "frontend/package.json"
+                       ],
+    "expectedEvidence":  [
+                             "tab-reference-matrix.txt",
+                             "router-source-references.txt",
+                             "router-package-reference.txt",
+                             "auth-path-references.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Confirm every tab has both navigation and render references",
+                                 "Confirm auth entry paths are used",
+                                 "Trace declared-but-unimported dependencies before recommending removal"
+                             ],
+    "nextAction":  "Review mixed responsibilities in Phase 13.",
+    "generatedBy":  "CASELOOP"
+}

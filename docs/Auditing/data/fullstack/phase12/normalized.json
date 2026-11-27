@@ -1,0 +1,126 @@
+﻿{
+    "phase":  "phase12",
+    "objective":  "Dead Route Wiring Analysis",
+    "generated":  "2026-11-27 15:03:30",
+    "evidenceCount":  4,
+    "totalLines":  104,
+    "totalBytes":  11011,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 4",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Navigation tab reference groups: 7 (evidence: tab-reference-matrix.txt)",
+                          "No router source references found: True (evidence: router-source-references.txt)",
+                          "Admin auth path is referenced: True (evidence: auth-path-references.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "frontend",
+                            "count":  93
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  61
+                        },
+                        {
+                            "keyword":  "mainlayout",
+                            "count":  39
+                        },
+                        {
+                            "keyword":  "layouts",
+                            "count":  39
+                        },
+                        {
+                            "keyword":  "activetab",
+                            "count":  33
+                        },
+                        {
+                            "keyword":  "responses",
+                            "count":  31
+                        },
+                        {
+                            "keyword":  "reports",
+                            "count":  29
+                        },
+                        {
+                            "keyword":  "intake",
+                            "count":  28
+                        },
+                        {
+                            "keyword":  "features",
+                            "count":  26
+                        },
+                        {
+                            "keyword":  "assignments",
+                            "count":  24
+                        },
+                        {
+                            "keyword":  "timeline",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "onclick",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "profile",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "admincontrol",
+                            "count":  15
+                        },
+                        {
+                            "keyword":  "hover",
+                            "count":  14
+                        },
+                        {
+                            "keyword":  "type",
+                            "count":  13
+                        },
+                        {
+                            "keyword":  "tabtype",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "bg-slate-100",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "setactivetab",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "userrole",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "bg-red-600",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "role",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "source",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "currentuser",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "const",
+                            "count":  8
+                        }
+                    ]
+}

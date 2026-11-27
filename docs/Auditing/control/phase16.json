@@ -1,0 +1,46 @@
+﻿{
+    "phase":  "phase16",
+    "phaseNumber":  16,
+    "objective":  "Backend Authorization Testing",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Pytest pass summary present",
+                               "search":  "passed",
+                               "file":  "backend-authorization-pytest.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Focused authorization test process exited successfully",
+                               "search":  "Exit code: 0",
+                               "file":  "backend-authorization-pytest.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "backend/app/core/auth.py",
+                           "backend/app/core/security.py",
+                           "backend/app/api/auth.py",
+                           "backend/tests/test_assignments.py"
+                       ],
+    "expectedEvidence":  [
+                             "backend-authorization-pytest.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Session and CSRF enforcement",
+                                 "Admin audience restrictions",
+                                 "Responder data and assignment restrictions",
+                                 "Public registration role constraints"
+                             ],
+    "nextAction":  "Run frontend navigation tests in Phase 17.",
+    "generatedBy":  "CASELOOP"
+}

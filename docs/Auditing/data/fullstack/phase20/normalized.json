@@ -1,0 +1,126 @@
+﻿{
+    "phase":  "phase20",
+    "objective":  "Final Summary and Handover",
+    "generated":  "2026-11-27 15:50:28",
+    "evidenceCount":  1,
+    "totalLines":  18,
+    "totalBytes":  1201,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 1",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "All preceding phase controls are complete: True (evidence: phase-completion-audit.txt)",
+                          "Backend test follow-up is included in handover evidence: True (evidence: phase-completion-audit.txt)",
+                          "Frontend production build is included in handover evidence: True (evidence: phase-completion-audit.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "expected",
+                            "count":  24
+                        },
+                        {
+                            "keyword":  "present",
+                            "count":  24
+                        },
+                        {
+                            "keyword":  "complete",
+                            "count":  13
+                        },
+                        {
+                            "keyword":  "evidence",
+                            "count":  13
+                        },
+                        {
+                            "keyword":  "artifacts",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "passed",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "handover",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase14",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "frontend",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase13",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "suite",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase17",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "production",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "fullstack",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "seed-guard",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "completion",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase15",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase8",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase19",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "backend",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "final",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase20",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase12",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase18",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "phase11",
+                            "count":  1
+                        }
+                    ]
+}

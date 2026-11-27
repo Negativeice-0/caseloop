@@ -1,0 +1,43 @@
+﻿{
+    "phase":  "phase18",
+    "phaseNumber":  18,
+    "objective":  "Smoke Tests and Build Verification",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Backend test suite exited successfully",
+                               "search":  "Exit code: 0",
+                               "file":  "backend-pytest.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Frontend production build exited successfully",
+                               "search":  "Exit code: 0",
+                               "file":  "frontend-production-build.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "backend/tests/test_assignments.py",
+                           "frontend/package.json"
+                       ],
+    "expectedEvidence":  [
+                             "backend-pytest.txt",
+                             "frontend-production-build.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Backend pytest suite",
+                                 "Frontend TypeScript check and Vite production build"
+                             ],
+    "nextAction":  "Update verified documentation in Phase 19.",
+    "generatedBy":  "CASELOOP"
+}

@@ -211,6 +211,14 @@ git push -u origin main
 
 Authenticate with GitHub's browser or SSH flow; do not put a personal access token in a command, source file, or `.env.example`. Consider enabling secret scanning/push protection if available on the account.
 
+### Recommended branch and deployment flow
+
+Use a protected, always-releasable `main` branch and short-lived pull-request branches, for example `feature/whatsapp-inbound-test` and `ops/oracle-deployment`. Keep each change small, run its tests, review the diff, and merge it back to `main`. This is a trunk-based workflow; it does not depend on copying any one company's internal process.
+
+Do not keep permanent `oracle`, `whatsapp`, `staging`, or `production` branches. Hosting provider and environment differences belong in deployment configuration and secret stores, not long-lived code branches. Keep Meta's test app/number and OCI test environment separate from production resources, and use only synthetic data while testing.
+
+Promote the same reviewed commit (or immutable image built from that commit) from test/staging to production. Record the commit SHA or release tag and roll back by redeploying a known-good version; avoid reimplementing or cherry-picking the same change independently across environment branches.
+
 ## 5. Prepare the Oracle deployment safely
 
 The current project cannot be deployed as a full production stack using the existing Compose file alone. A full single-VM setup needs:

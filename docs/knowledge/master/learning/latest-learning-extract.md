@@ -1,16 +1,20 @@
 ﻿# Learning Extraction
 
 Generated:
-11/26/2026 14:11:59
+11/27/2026 15:50:47
+
+Phase:
+phase20
 
 ---
 
 ## Engineering Lessons
 
 - Authorization inventories must be normalized before matrix generation.
+- Dependency tracing should happen before refactoring.
 - Normalized evidence is more useful than raw search results.
 - PASS messages do not replace artifact verification.
-- Route inventories should come from authoritative registration sources.
+- Route inventories should come from authoritative sources.
 
 ---
 
@@ -18,56 +22,26 @@ Generated:
 
 - Evidence is more important than assumptions.
 - Verification is more important than PASS messages.
-- Discover once and consume normalized artifacts.
-- Use authoritative sources before repository-wide scans.
+- Discover once and reuse normalized artifacts.
+- Prefer authoritative sources over repository scans.
 
 ---
 
 ## Useful Files
 
-- â†’ api.ts
-- backend/app/api/*.py
-- backend/app/models/models.py
-- backend/app/services/*.py
-- frontend/src/services/api.ts
+- backend/app/seed.py
+- backend/tests/test_assignments.py
+- frontend/src/App.tsx
+- frontend/src/layouts/MainLayout.tsx
 
 ---
 
 ## Useful Scripts
 
-- C:\Users\Admin\Documents\caseloop\scripts\extract_audit.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\setup.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\audit\knowledge\finalize-knowledge.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\audit\phases\phase5\auth-normalized.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\audit\phases\phase5\normalize-auth.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\audit\phases\phase6\rolePermission-matrix.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\audit\phases\phase7\runtime-inventory.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase1\audit_tree.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase1\run_audit.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase3\Create-Phase3Audit.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase4\Archive-Phase4-FailedRun.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase4\Audit-Phase4-FrontendInventory.backup.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase4\Audit-Phase4-FrontendInventory.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase4\phase4-inventory-frontend-routes.backup.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\auditing\phase4\phase4-inventory-frontend-routes.ps1
-- C:\Users\Admin\Documents\caseloop\scripts\random\test_ollama.ps1
+- C:\Users\Admin\Documents\caseloop\scripts\audit\phases\phase20\final-handover.ps1
 
 ---
 
-## Latest Review Reference
+## Source
 
-C:\Users\Admin\Documents\caseloop\docs\Auditing\data\snrlead\phase6\authorization-review.md
-
----
-
-## Recommended Next Learning Goal
-
-Continue the active engineering step before running another learning extraction.
-
-Only run learning extraction after:
-
-- checkpoint completion
-- audit completion
-- deployment completion
-- major refactoring
-- major bug resolution
+docs\Auditing\data\snrlead\phase20\verification.md

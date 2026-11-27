@@ -1,0 +1,12 @@
+Runtime UI checks using isolated test database and synthetic accounts (no credentials recorded):
+
+Responder desktop: Register, Assignments & Teams, Operational Timeline, Officer Profile. Intake Review, Reports & Analysis, and Admin & System Control absent.
+Responder mobile More menu: no Intake Review, Reports & Analysis, or Admin & System Control; Officer Profile present.
+Responder direct /admin entry: Administrator access required; admin panel absent.
+Coordinator desktop: Register, Assignments & Teams, Operational Timeline, Intake Review, Reports & Analysis, Officer Profile. Admin & System Control absent.
+Coordinator mobile More menu: Intake Review, Reports & Analysis, Officer Profile present; Admin & System Control absent.
+Coordinator direct /admin entry: Administrator access required.
+Administrator direct /admin entry: Administrator workspace rendered.
+Administrator desktop: all seven tabs visible.
+Administrator mobile More menu: Intake Review, Reports & Analysis, Officer Profile, Admin & System Control visible.
+All role visibility checks above were performed in the integrated browser; backend and frontend ran locally against an isolated SQLite audit database.

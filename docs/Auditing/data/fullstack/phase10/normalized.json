@@ -1,0 +1,126 @@
+﻿{
+    "phase":  "phase10",
+    "objective":  "Visibility and Route Testing",
+    "generated":  "2026-11-27 15:00:42",
+    "evidenceCount":  4,
+    "totalLines":  80,
+    "totalBytes":  7514,
+    "indicators":  {
+                       "PASS":  0,
+                       "FAIL":  0,
+                       "WARNING":  0,
+                       "ERROR":  0,
+                       "TODO":  0
+                   },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 4",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Admin-only visibility gate present: True (evidence: visibility-source-evidence.txt)",
+                          "No frontend source test files detected: True (evidence: frontend-test-capability.txt)",
+                          "Admin entry-point evidence present: True (evidence: entry-point-evidence.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "frontend",
+                            "count":  63
+                        },
+                        {
+                            "keyword":  "mainlayout",
+                            "count":  27
+                        },
+                        {
+                            "keyword":  "layouts",
+                            "count":  27
+                        },
+                        {
+                            "keyword":  "layout",
+                            "count":  27
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  26
+                        },
+                        {
+                            "keyword":  "onclick",
+                            "count":  19
+                        },
+                        {
+                            "keyword":  "activetab",
+                            "count":  18
+                        },
+                        {
+                            "keyword":  "setactivetab",
+                            "count":  16
+                        },
+                        {
+                            "keyword":  "role",
+                            "count":  14
+                        },
+                        {
+                            "keyword":  "currentuser",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "reports",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "selecttab",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "intake",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "button",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "responses",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "profile",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "classname",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "timeline",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "text-left",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "administrator",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "const",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "flex",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "items-center",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "gap-3",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "isadminentry",
+                            "count":  6
+                        }
+                    ]
+}

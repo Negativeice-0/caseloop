@@ -1,0 +1,53 @@
+﻿{
+    "phase":  "phase9",
+    "phaseNumber":  9,
+    "objective":  "Navigation Audit and Cleanup Candidates",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Navigation tabs defined",
+                               "file":  "navigation-tabs.txt",
+                               "type":  "count-lines"
+                           },
+                           {
+                               "label":  "Role-gated navigation evidence present",
+                               "search":  "currentUser.role !== \u0027responder\u0027",
+                               "file":  "navigation-source-evidence.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "No frontend source imports of react-router-dom",
+                               "search":  "No react-router-dom references found",
+                               "file":  "router-source-references.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/src/App.tsx",
+                           "frontend/src/layouts/MainLayout.tsx",
+                           "frontend/src/features/auth/AuthGateway.tsx",
+                           "frontend/package.json"
+                       ],
+    "expectedEvidence":  [
+                             "navigation-tabs.txt",
+                             "navigation-source-evidence.txt",
+                             "router-source-references.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Desktop and mobile navigation parity",
+                                 "Role-specific navigation visibility",
+                                 "Tab rendering and entry-point wiring",
+                                 "Unused router dependency reference audit"
+                             ],
+    "nextAction":  "Run role visibility and route tests in Phase 10.",
+    "generatedBy":  "CASELOOP"
+}

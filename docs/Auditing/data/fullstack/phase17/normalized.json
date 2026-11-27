@@ -1,0 +1,125 @@
+﻿{
+    "phase":  "phase17",
+    "objective":  "Frontend Navigation Testing",
+    "generated":  "2026-11-27 15:12:32",
+    "evidenceCount":  2,
+    "totalLines":  19,
+    "totalBytes":  1050,
+    "textMentions":  {
+                         "PASS_MENTIONS":  6,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 2",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Responder navigation interaction results recorded: True (evidence: frontend-navigation-results.txt)",
+                          "No frontend source test files detected: True (evidence: frontend-test-capability.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "pass",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "frontend",
+                            "count":  5
+                        },
+                        {
+                            "keyword":  "button",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "account",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "selected",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "responder",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "test",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "navigation",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "menu",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "responses",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "officer",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "profile",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "timeline",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "view",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "operational",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "more",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "register",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "remained",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "checks",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "found",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "browser",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "chronological",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "coordinator",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "load",
+                            "count":  1
+                        },
+                        {
+                            "keyword":  "assignment",
+                            "count":  1
+                        }
+                    ]
+}

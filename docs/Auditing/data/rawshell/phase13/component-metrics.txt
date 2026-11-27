@@ -1,0 +1,5 @@
+frontend\src\App.tsx | lines: 166 | bytes: 6842
+frontend\src\layouts\MainLayout.tsx | lines: 274 | bytes: 13096
+frontend\src\features\workflow\WorkflowViews.tsx | lines: 718 | bytes: 34954
+frontend\src\features\admin\AdminControl.tsx | lines: 384 | bytes: 20007
+frontend\src\features\assignments\AssignmentsManager.tsx | lines: 241 | bytes: 10861

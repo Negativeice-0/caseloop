@@ -1,0 +1,125 @@
+﻿{
+    "phase":  "phase16",
+    "objective":  "Backend Authorization Testing",
+    "generated":  "2026-11-27 15:10:32",
+    "evidenceCount":  1,
+    "totalLines":  47,
+    "totalBytes":  3255,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 1",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Pytest pass summary present: True (evidence: backend-authorization-pytest.txt)",
+                          "Focused authorization test process exited successfully: False (evidence: backend-authorization-pytest.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "venv",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "pydantic",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "site-packages",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "monkeypatch",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "seed_engine",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "failed",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "backend",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "deprecated",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "anyio",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "warnings",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "tests",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "test_demo_seed_requires_an_existing_coordinator_or_admin",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "documents",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "seeding",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "caseloop",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "users",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "seed_module",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "test_assignments",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "pytest",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "blockingportal",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "redacted",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "runtimeerror",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "typing",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "https",
+                            "count":  2
+                        }
+                    ]
+}

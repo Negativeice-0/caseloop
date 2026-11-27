@@ -1,0 +1,127 @@
+﻿{
+    "phase":  "phase8",
+    "objective":  "README and Documentation Audit",
+    "generated":  "2026-11-27 14:50:52",
+    "evidenceCount":  4,
+    "totalLines":  240,
+    "totalBytes":  20519,
+    "indicators":  {
+                       "PASS":  0,
+                       "FAIL":  0,
+                       "WARNING":  0,
+                       "ERROR":  0,
+                       "TODO":  0
+                   },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 4",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "README files discovered: 12 (evidence: readme-inventory.txt)",
+                          "Documentation files discovered: 167 (evidence: documentation-inventory.txt)",
+                          "README.md present: True (evidence: documentation-coverage.txt)",
+                          "docker-compose.yml present: True (evidence: documentation-coverage.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "admin",
+                            "count":  170
+                        },
+                        {
+                            "keyword":  "caseloop",
+                            "count":  170
+                        },
+                        {
+                            "keyword":  "users",
+                            "count":  169
+                        },
+                        {
+                            "keyword":  "documents",
+                            "count":  169
+                        },
+                        {
+                            "keyword":  "projects",
+                            "count":  33
+                        },
+                        {
+                            "keyword":  "deployment",
+                            "count":  29
+                        },
+                        {
+                            "keyword":  "rawshell",
+                            "count":  26
+                        },
+                        {
+                            "keyword":  "knowledge",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "backend",
+                            "count":  23
+                        },
+                        {
+                            "keyword":  "readme",
+                            "count":  19
+                        },
+                        {
+                            "keyword":  "progress",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "group1",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "fullstack",
+                            "count":  16
+                        },
+                        {
+                            "keyword":  "master",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "phase4",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "overview",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "snrlead",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "trouble",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "frontend",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "phase8",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "training",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "baseline",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "router",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "webhooks",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "include_router",
+                            "count":  7
+                        }
+                    ]
+}

@@ -1,0 +1,18 @@
+﻿{
+    "phase":  "phase18",
+    "objective":  "Smoke Tests and Build Verification",
+    "generated":  "2026-11-27 15:13:54",
+    "evidenceFiles":  [
+                          "backend-pytest.txt",
+                          "frontend-production-build.txt"
+                      ],
+    "evidenceCount":  2,
+    "primaryEvidence":  [
+                            "backend-pytest.txt",
+                            "frontend-production-build.txt"
+                        ],
+    "notes":  [
+                  "Backend pytest and frontend production build were run; each exit code is recorded.",
+                  "Email addresses in captured output are redacted."
+              ]
+}

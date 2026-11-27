@@ -1,0 +1,9 @@
+frontend\src\App.tsx:18: const isAdminEntry = window.location.pathname === '/admin';
+frontend\src\App.tsx:21: const [activeTab, setActiveTab] = useState<TabType>(isAdminEntry ? 'admin' : 'responses');
+frontend\src\App.tsx:62: setActiveTab('responses');
+frontend\src\App.tsx:74: setActiveTab('responses');
+frontend\src\App.tsx:119: setActiveTab={setActiveTab}
+frontend\src\features\auth\AuthGateway.tsx:55: <button type="button" aria-label="CaseLoop authentication home" onClick={() => window.location.assign('/')} className="flex items-center gap-3 text-left">
+frontend\src\features\auth\AuthGateway.tsx:94: onClick={() => window.location.assign('/admin')}
+frontend\src\features\auth\AuthGateway.tsx:160: onClick={() => window.location.assign('/admin')}
+frontend\src\features\auth\AuthGateway.tsx:174: if (screen === 'admin-login') window.location.assign('/');

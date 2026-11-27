@@ -71,6 +71,8 @@ Open `http://<LAN_IP>:5174` on the PC and a phone on the same trusted Wi-Fi. Kee
 
 The landing page allows public responder registration; coordinator/admin accounts are provisioned by an administrator. Create the first admin via the CLI. Admins can add accounts with generated one-time temporary passwords, which must be changed on first login; they can also reset another user's password. Public registration has no email verification or signup abuse throttling yet. Existing legacy accounts with plaintext/placeholder passwords will not authenticate until a trusted admin resets/promotes them or the CLI is used.
 
+Do not run `python -m app.seed` or `docker compose exec api python -m app.seed`. The current seeder creates built-in default accounts, contrary to its existing guard test, which currently fails. Use the application UI or isolated test fixtures for synthetic data until the seeder is corrected and re-verified.
+
 This controlled-provisioning approach is typical: an authorized administrator or identity provider grants elevated roles instead of allowing public admin signup. CaseLoop currently has no SSO, MFA, or email invitation links; those are sensible additions before using it with an organization.
 
 Choose a unique password in the private local prompt; never put credentials in source, checkpoints, or chat. If a password is exposed, rotate it immediately.
@@ -115,7 +117,7 @@ This is not production hosting. Render's free web service spins down after 15 mi
 
 ### Deployment steps
 
-1. Create a private GitHub repository and push the project only after checking for secrets and local data. This workspace has no configured Git remote or hosting account, so deployment cannot be completed from here without your provider sign-ins.
+1. Verify that the configured `origin` points to the intended private GitHub repository, then push only after checking for secrets and local data. Provider access is required to create or configure hosting resources.
 2. Create a Neon project. Copy its connection string from the dashboard; keep it private.
 3. In Render, create a **Web Service** from that repository with root directory `backend`, Python runtime, build command `pip install -r requirements.txt`, and start command `uvicorn app.main:app --host 0.0.0.0 --port $PORT`. Add `backend\.python-version` with `3.11` to retain the project's Python baseline.
 4. Configure the API service environment: `APP_ENV=production`, `COOKIE_SECURE=true`, `DATABASE_URL` set to the Neon PostgreSQL URL using the `postgresql+psycopg` driver and `sslmode=require`, and `CORS_ORIGINS` set to the exact Render static-site origin (no wildcard). Add `WHATSAPP_VERIFY_TOKEN` and `WHATSAPP_APP_SECRET` only when setting up the Meta test webhook.
@@ -135,7 +137,7 @@ Do not host operational or personal data until the organization has approved the
 - Configure budget alerts, an owner, and an availability expectation. Free-tier services are not a humanitarian service-level commitment.
 - Use only synthetic records in preview deployments.
 
-No Git remote, provider account, public host, public DNS name, or live WhatsApp connection is configured in this workspace. Docker Compose is local only.
+An `origin` Git remote is configured, but no public host, public DNS name, or live WhatsApp connection has been verified in this workspace. Docker Compose is local only.
 
 ## Learning plan for working independently
 

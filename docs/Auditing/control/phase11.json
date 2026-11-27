@@ -1,0 +1,53 @@
+﻿{
+    "phase":  "phase11",
+    "phaseNumber":  11,
+    "objective":  "Route Disposition Review",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "Tab and renderer source matches",
+                               "file":  "tab-disposition-source.txt",
+                               "type":  "count-lines"
+                           },
+                           {
+                               "label":  "Admin entry path referenced",
+                               "search":  "\u0027/admin\u0027",
+                               "file":  "entry-path-source.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Coordinator admin entry denial evidenced",
+                               "search":  "Coordinator direct /admin entry: Administrator access required.",
+                               "file":  "runtime-entry-tests.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/src/App.tsx",
+                           "frontend/src/layouts/MainLayout.tsx",
+                           "frontend/src/features/auth/AuthGateway.tsx",
+                           "backend/app/main.py"
+                       ],
+    "expectedEvidence":  [
+                             "tab-disposition-source.txt",
+                             "entry-path-source.txt",
+                             "api-router-registration.txt",
+                             "runtime-entry-tests.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Retain or refactor each workspace tab",
+                                 "Retain authentication entry paths",
+                                 "Determine whether any route is a deletion candidate"
+                             ],
+    "nextAction":  "Trace route references in Phase 12.",
+    "generatedBy":  "CASELOOP"
+}

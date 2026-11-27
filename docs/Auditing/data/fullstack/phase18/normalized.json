@@ -1,0 +1,125 @@
+﻿{
+    "phase":  "phase18",
+    "objective":  "Smoke Tests and Build Verification",
+    "generated":  "2026-11-27 15:14:21",
+    "evidenceCount":  2,
+    "totalLines":  65,
+    "totalBytes":  3707,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 2",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Backend test suite exited successfully: False (evidence: backend-pytest.txt)",
+                          "Frontend production build exited successfully: True (evidence: frontend-production-build.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "pydantic",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "venv",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "site-packages",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "monkeypatch",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "seed_engine",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "backend",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "gzip",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "failed",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  4
+                        },
+                        {
+                            "keyword":  "pytest",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "documents",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "anyio",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "build",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "test_demo_seed_requires_an_existing_coordinator_or_admin",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "warnings",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "seeding",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "users",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "caseloop",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "seed_module",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "blockingportal",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "deprecated",
+                            "count":  3
+                        },
+                        {
+                            "keyword":  "deprecationwarning",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "https",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "seed_sessions",
+                            "count":  2
+                        },
+                        {
+                            "keyword":  "redacted",
+                            "count":  2
+                        }
+                    ]
+}

@@ -1,0 +1,57 @@
+﻿{
+    "phase":  "phase15",
+    "phaseNumber":  15,
+    "objective":  "Deletion Candidates",
+    "status":  "COMPLETE",
+    "factExtractors":  [
+                           {
+                               "label":  "No first-party source references to router dependency",
+                               "search":  "First-party source matches: 0",
+                               "file":  "deletion-candidate-evidence.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Dependency deletion is not approved",
+                               "search":  "Disposition: no deletion approved",
+                               "file":  "deletion-candidate-evidence.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Documentation references assessed",
+                               "search":  "Documentation matches:",
+                               "file":  "deletion-candidate-evidence.txt",
+                               "type":  "contains"
+                           },
+                           {
+                               "label":  "Navigation runtime evidence present",
+                               "search":  "Administrator desktop: all seven tabs visible.",
+                               "file":  "runtime-navigation-reference.txt",
+                               "type":  "contains"
+                           }
+                       ],
+    "importantFiles":  [
+                           "frontend/package.json",
+                           "frontend/package-lock.json",
+                           "frontend/src",
+                           "backend/tests"
+                       ],
+    "expectedEvidence":  [
+                             "deletion-candidate-evidence.txt",
+                             "runtime-navigation-reference.txt"
+                         ],
+    "expectedArtifacts":  [
+                              "normalized.json",
+                              "keyword-frequency.json",
+                              "evidence-excerpts.md",
+                              "findings.md",
+                              "summary.md",
+                              "verification.md",
+                              "logbook.md"
+                          ],
+    "validationCandidates":  [
+                                 "Recommend removal only where all required references are absent",
+                                 "Never delete automatically"
+                             ],
+    "nextAction":  "Run backend authorization tests in Phase 16.",
+    "generatedBy":  "CASELOOP"
+}

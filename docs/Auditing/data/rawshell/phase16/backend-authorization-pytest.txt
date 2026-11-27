@@ -1,0 +1,46 @@
+Command: backend/venv/Scripts/python.exe -m pytest -q tests/test_assignments.py -k "api_requires_session or admin_sign_in or admin_provisioned or admin_password_reset or demo_seed_requires or responder_only or session_logout or public_registration"
+Working directory: backend
+
+....F....                                                                [100%]
+================================== FAILURES ===================================
+__________ test_demo_seed_requires_an_existing_coordinator_or_admin ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000019314F61610>
+
+    def test_demo_seed_requires_an_existing_coordinator_or_admin(monkeypatch):
+        from app import seed as seed_module
+
+        seed_engine = create_engine(
+            "sqlite:///:memory:",
+            connect_args={"check_same_thread": False},
+            poolclass=StaticPool,
+        )
+        Base.metadata.create_all(bind=seed_engine)
+        seed_sessions = sessionmaker(bind=seed_engine)
+        monkeypatch.setattr(seed_module, "engine", seed_engine)
+        monkeypatch.setattr(seed_module, "SessionLocal", seed_sessions)
+>       with pytest.raises(RuntimeError, match="Create an active administrator"):
+E       Failed: DID NOT RAISE <class 'RuntimeError'>
+
+tests\test_assignments.py:629: Failed
+---------------------------- Captured stdout call -----------------------------
+\U0001f4c1 Loaded environment for seeding from: C:\\Users\\Admin\\Documents\\caseloop\\.env\n\U0001f331 Starting database seeding into fresh Docker PostgreSQL...\nCreating default coordinator/admin: [redacted email]\nCreating regular user: [redacted email]\n\U0001f389 Database seeding completed successfully with identical app hashing!
+============================== warnings summary ===============================
+venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\Admin\Documents\caseloop\backend\venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+venv\Lib\site-packages\pydantic\_internal\_config.py:272
+  C:\Users\Admin\Documents\caseloop\backend\venv\Lib\site-packages\pydantic\_internal\_config.py:272: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.6/migration/
+    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_assignments.py::test_demo_seed_requires_an_existing_coordinator_or_admin
+1 failed, 8 passed, 17 deselected, 7 warnings in 9.26s
+Exit code: 1

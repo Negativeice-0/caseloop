@@ -1,0 +1,126 @@
+﻿{
+    "phase":  "phase14",
+    "objective":  "Reference Audit",
+    "generated":  "2026-11-27 15:06:09",
+    "evidenceCount":  2,
+    "totalLines":  75,
+    "totalBytes":  6400,
+    "textMentions":  {
+                         "PASS_MENTIONS":  0,
+                         "FAIL_MENTIONS":  0,
+                         "WARNING_MENTIONS":  0,
+                         "ERROR_MENTIONS":  0,
+                         "TODO_MENTIONS":  0
+                     },
+    "verifiedFacts":  [
+                          "Evidence files discovered: 2",
+                          "Evidence successfully parsed",
+                          "Keyword extraction completed",
+                          "Candidate reference groups: 12 (evidence: target-reference-map.txt)",
+                          "No router source imports found: True (evidence: router-reference-audit.txt)",
+                          "Router dependency is declared in package metadata: True (evidence: router-reference-audit.txt)",
+                          "Manifest detected"
+                      ],
+    "topKeywords":  [
+                        {
+                            "keyword":  "frontend",
+                            "count":  59
+                        },
+                        {
+                            "keyword":  "features",
+                            "count":  35
+                        },
+                        {
+                            "keyword":  "workflowviews",
+                            "count":  18
+                        },
+                        {
+                            "keyword":  "admincontrol",
+                            "count":  18
+                        },
+                        {
+                            "keyword":  "workflow",
+                            "count":  18
+                        },
+                        {
+                            "keyword":  "admin",
+                            "count":  17
+                        },
+                        {
+                            "keyword":  "import",
+                            "count":  13
+                        },
+                        {
+                            "keyword":  "candidate",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "matching",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "lines",
+                            "count":  12
+                        },
+                        {
+                            "keyword":  "export",
+                            "count":  11
+                        },
+                        {
+                            "keyword":  "intakereview",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "timelineview",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "reportsview",
+                            "count":  10
+                        },
+                        {
+                            "keyword":  "react-router-dom",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "responseregister",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "assignmentsmanager",
+                            "count":  9
+                        },
+                        {
+                            "keyword":  "json",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "currentuser",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "function",
+                            "count":  8
+                        },
+                        {
+                            "keyword":  "const",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "mainlayout",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "getintakes",
+                            "count":  7
+                        },
+                        {
+                            "keyword":  "userprofile",
+                            "count":  6
+                        },
+                        {
+                            "keyword":  "package-lock",
+                            "count":  6
+                        }
+                    ]
+}
